@@ -36,7 +36,12 @@ Templates for planning both expected and unexpected transitions. Technical hando
 ### Workshop resources
 
 - [Scenario cards](resources/scenario-cards.md)
-Workshop exercises for practicing crisis response. Use these to stress-test your project's resilience with your team.
+Twenty five situations to put in front of a team and work through before one of them actually happens. Each is tagged with the settings it fits (open source, charity and NGO, company, small team) and how hard the discussion tends to be.
+
+  There is a [printable deck](deck/scenario-deck.pdf) as well, A4 with two A5 cards per sheet, and a card tool at [beyondthebusfactor.org/scenarios/cards](https://beyondthebusfactor.org/scenarios/cards/).
+
+- [Facilitator's guide](resources/facilitator-guide.md)
+How to run a scenario session when you have never run one before. Formats from forty five minutes to half a day, what to do when a group starts arguing with the scenario, and how to close so that something actually changes.
 
 ## Who this is for
 
@@ -60,9 +65,19 @@ These resources improve when more people share their experience. If you've navig
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to help.
 
+### Adding a scenario
+
+Scenarios live one per file in [`resources/scenarios/`](resources/scenarios). Copy any of them, edit it, and run:
+
+```
+python3 tools/build-deck.py
+```
+
+That regenerates the document, the print sheet and the website data from the same source. No dependencies. See [deck/README.md](deck/README.md) for the front matter fields and how the PDF is produced.
+
 ## Origin story
 
-These resources emerged from the 'Beyond the bus factor' session at GitHub Universe 2025 Community Day, led by Ruth Cheesley (Mautic Project Lead).
+These resources emerged from the 'Beyond the bus factor' session at GitHub Universe 2025 Community Day, led by Sīlavāpi Cheesley (Mautic Project Lead), previously published under the name Ruth Cheesley.
 
 They reflect real challenges: preparing for a three-month off-grid sabbatical, spinning projects out from corporate control, managing maintainer burnout, and dealing with unexpected departures.
 
