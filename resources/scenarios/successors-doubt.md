@@ -32,7 +32,3 @@ You keep finding reasons to delay accepting the role. Maybe you should contribut
 - What makes someone legitimate as a maintainer
 - Support structures for new leaders
 - Learning whilst leading vs being perfect first
-
----
-
-**The point of these scenarios isn't to have perfect answers. It's to realise what you don't know, what isn't prepared, and what needs to change before a real crisis hits.**

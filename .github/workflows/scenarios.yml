@@ -1,0 +1,26 @@
+name: Scenarios
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check the scenario sources
+        run: python3 tools/test_scenarios.py
+      - name: Confirm the generated files are up to date
+        run: |
+          python3 tools/build-deck.py
+          if ! git diff --quiet -- resources/scenario-cards.md deck/scenarios.json deck/scenario-deck.html; then
+            echo "::error::Generated files are out of date. Run 'python3 tools/build-deck.py' and commit the result."
+            git diff --stat -- resources/scenario-cards.md deck/scenarios.json deck/scenario-deck.html
+            exit 1
+          fi

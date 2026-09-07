@@ -675,7 +675,6 @@ You keep finding reasons to delay accepting the role. Maybe you should contribut
 - What makes someone legitimate as a maintainer
 - Support structures for new leaders
 - Learning whilst leading vs being perfect first
-- ---
 
 ### The volunteer coordinator
 

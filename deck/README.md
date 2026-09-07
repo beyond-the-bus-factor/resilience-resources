@@ -38,6 +38,14 @@ A4, single sided, no scaling, background graphics on. Each sheet holds two A5 la
 
 The first card is a cover with the session instructions on it, so a deck handed to somebody else explains itself.
 
+## Checks
+
+```
+python3 tools/test_scenarios.py
+```
+
+Runs in CI on every pull request, along with a check that the generated files in this directory match the sources. If you edit a scenario and forget to rebuild, CI says so.
+
 ## Adding a scenario
 
 Copy any file in `resources/scenarios/` and edit it. The front matter needs:
