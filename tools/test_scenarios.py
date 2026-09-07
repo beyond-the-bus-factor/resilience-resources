@@ -13,9 +13,7 @@ complained about until somebody printed it.
 """
 
 import os
-import shutil
 import sys
-import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import scenarios  # noqa: E402
@@ -29,18 +27,28 @@ def check(label, condition):
         FAILURES.append(label)
 
 
+def read(path):
+    with open(path, encoding="utf-8") as fh:
+        return fh.read()
+
+
+def write(path, text, newline=None):
+    with open(path, "w", encoding="utf-8", newline=newline) as fh:
+        fh.write(text)
+
+
 def check_raises(label, path, mutate):
     """Corrupt one source file, confirm the loader refuses it, put it back."""
-    original = open(path, encoding="utf-8").read()
+    original = read(path)
     try:
-        open(path, "w", encoding="utf-8").write(mutate(original))
+        write(path, mutate(original))
         try:
             scenarios.load()
             check(label, False)
         except ValueError:
             check(label, True)
     finally:
-        open(path, "w", encoding="utf-8").write(original)
+        write(path, original)
 
 
 def main():
@@ -75,18 +83,21 @@ def main():
     check_raises("unknown category", sample,
                  lambda s: s.replace("category: governance", "category: misc"))
     check_raises("missing front matter", sample, lambda s: s.split("---", 2)[2])
+    check_raises("sectors written as a bare string", sample,
+                 lambda s: s.replace("sectors: [open-source, charity, corporate, small-team]",
+                                     "sectors: charity"))
 
     print("Line endings")
-    original = open(sample, encoding="utf-8").read()
+    original = read(sample)
     try:
-        open(sample, "w", newline="", encoding="utf-8").write(original.replace("\n", "\r\n"))
+        write(sample, original.replace("\n", "\r\n"), newline="")
         try:
             scenarios.load()
             check("a CRLF source file still parses", True)
         except ValueError:
             check("a CRLF source file still parses", False)
     finally:
-        open(sample, "w", newline="", encoding="utf-8").write(original)
+        write(sample, original, newline="")
 
     print()
     if FAILURES:

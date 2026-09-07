@@ -267,18 +267,21 @@ def main():
     os.makedirs(DECK, exist_ok=True)
 
     md = os.path.join(ROOT, "resources", "scenario-cards.md")
-    open(md, "w", encoding="utf-8").write(build_markdown(scenarios))
+    with open(md, "w", encoding="utf-8") as fh:
+        fh.write(build_markdown(scenarios))
 
     ph = os.path.join(DECK, "scenario-deck.html")
-    open(ph, "w", encoding="utf-8").write(build_print(scenarios))
+    with open(ph, "w", encoding="utf-8") as fh:
+        fh.write(build_print(scenarios))
 
     js = os.path.join(DECK, "scenarios.json")
-    json.dump({
-        "sectors": SECTORS,
-        "categories": CATEGORIES,
-        "difficulty": {str(k): v for k, v in DIFFICULTY.items()},
-        "scenarios": scenarios,
-    }, open(js, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    with open(js, "w", encoding="utf-8") as fh:
+        json.dump({
+            "sectors": SECTORS,
+            "categories": CATEGORIES,
+            "difficulty": {str(k): v for k, v in DIFFICULTY.items()},
+            "scenarios": scenarios,
+        }, fh, indent=1, ensure_ascii=False)
 
     print(f"{len(scenarios)} scenarios")
     for p in (md, ph, js):

@@ -79,11 +79,15 @@ def load():
     for name in sorted(os.listdir(SRC)):
         if not name.endswith(".md"):
             continue
-        meta, body = _front_matter(open(os.path.join(SRC, name), encoding="utf-8").read())
+        with open(os.path.join(SRC, name), encoding="utf-8") as fh:
+            meta, body = _front_matter(fh.read())
         parts = _sections(body)
         missing = [k for k in ("title", "slug", "category", "sectors", "difficulty", "summary") if k not in meta]
         if missing:
             raise ValueError(f"{name}: missing front matter: {', '.join(missing)}")
+        if not isinstance(meta["sectors"], list) or not meta["sectors"]:
+            raise ValueError(f"{name}: sectors must be a non-empty list in square brackets, "
+                             f"for example [charity, corporate]. Got {meta['sectors']!r}")
         if meta["category"] not in CATEGORIES:
             raise ValueError(f"{name}: unknown category '{meta['category']}', "
                              f"expected one of {', '.join(CATEGORIES)}")
