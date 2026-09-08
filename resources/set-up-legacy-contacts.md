@@ -6,6 +6,20 @@ It's up to you who you choose for this - it might be a spouse or a partner, or a
 
 Here's how to set up a legacy contact on various tools that you might be using.
 
+## If the accounts belong to an organisation
+
+Legacy contacts are a consumer feature, designed around one person's personal account. They are the right tool for your own accounts, and the wrong tool for anything the organisation depends on.
+
+For those, the equivalent is making sure the organisation owns the account rather than a person does:
+
+- [ ] Registered to a shared address the organisation controls, not an individual's
+- [ ] More than one administrator on every account that matters
+- [ ] Paid on an organisational card, not somebody's personal one
+- [ ] Recovery details pointing at something more than one person can reach
+- [ ] Written down somewhere, so the list survives the person who made it
+
+The [bus factor audit](bus-factor-audit.md) has a section for this, and your overlay will have the specifics: [open source](sectors/open-source.md), [charities and NGOs](sectors/charity-ngo.md), [companies](sectors/company.md), [small teams](sectors/small-team.md).
+
 ## Coding platforms 
 
 - **GitHub:** [Set up a legacy contact](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/maintaining-ownership-continuity-of-your-personal-accounts-repositories)

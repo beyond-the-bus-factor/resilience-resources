@@ -8,7 +8,7 @@ Preparing for that has forced me to confront every single point of failure in th
 
 These aren't comfortable questions, but they're essential ones. And I realised that most of us (including me!) are avoiding them until it's too late.
 
-Today we're going to tackle the uncomfortable reality that most open source projects are one maintainer departure away from crisis. We're working under Chatham House Rule - use what you learn, but don't attribute who said what. This creates space for real honesty about our vulnerabilities.
+Today we're going to tackle the uncomfortable reality that most open source projects are one maintainer departure away from crisis. We're working under Chatham House Rule - use what you learn, but don't attribute who said what. This creates space to be candid about our vulnerabilities.
 
 We're building these resources collaboratively. Everything discussed here will be shared in this repository to help others facing the same challenges.
 
@@ -37,7 +37,7 @@ Think about this now. We'll go around the room and each share briefly. This isn'
 
 ### Your task
 
-Work through this audit individually for 3-4 minutes. Be honest about your actual vulnerabilities, not what you wish they were.
+Work through this audit individually for 3-4 minutes. Write down your actual vulnerabilities, not the ones you wish you had.
 
 **Critical technical areas:**
 
@@ -227,16 +227,16 @@ This creates accountability. You've said it out loud to this group.
 
 These live in this repository. Star it to follow updates.
 
-### [Legacy checklist](resources/legacy-checklist.md)
+### [Legacy checklist](../resources/legacy-checklist.md)
 What to prepare in case you die or become suddenly incapacitated. The uncomfortable conversation with practical details.
 
-### [Bus factor audit](resources/bus-factor-audit.md)
+### [Bus factor audit](../resources/bus-factor-audit.md)
 Complete framework for identifying single points of failure across technical, governance, and community dimensions.
 
-### [Succession planning guide](resources/succession-planning-guide.md)
+### [Succession planning guide](../resources/succession-planning-guide.md)
 Templates for planned departures, unexpected absences, and gradual transitions. Includes handoff checklists for technical, governance, and community succession.
 
-### [Scenario cards](resources/scenario-cards.md)
+### [Scenario cards](../resources/scenario-cards.md)
 Ten detailed workshop scenarios you can use with your own teams.
 
 ---

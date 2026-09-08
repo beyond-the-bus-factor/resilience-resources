@@ -8,6 +8,8 @@ This guide helps you plan for three types of transitions:
 2. **Unexpected absences** - Sudden illness, burnout, or life changes with little warning
 3. **Gradual transitions** - Shifting from active leadership to advisory roles over time
 
+The timelines and checklists here work whatever you run. For the parts specific to your setting, read alongside your overlay: [open source](sectors/open-source.md), [charities and NGOs](sectors/charity-ngo.md), [companies](sectors/company.md), [small teams](sectors/small-team.md).
+
 ## Why succession planning matters
 
 Most open source projects fail not because the technology is bad, but because key people leave and nobody knows how to continue. Succession planning is how you prevent that.
@@ -138,7 +140,7 @@ When someone disappears suddenly - illness, burnout, personal crisis, death - yo
 
 **Internal communication**
 - [ ] Inform core team/leadership of the situation
-- [ ] Be honest about what you know and don't know
+- [ ] Be clear about what you know and what you do not
 - [ ] Assign someone to coordinate the response
 - [ ] Set up check-ins for the team
 
@@ -212,7 +214,7 @@ The healthiest transitions happen gradually - someone shifts from active leaders
 - [ ] Look for people who show interest and capability
 - [ ] They don't have to be just like you - different strengths are valuable
 - [ ] Discuss with potential successors whether they're interested
-- [ ] Be honest about the responsibility and time commitment
+- [ ] Be plain about the responsibility and the time commitment
 
 **Start delegating**
 - [ ] Hand off small, contained responsibilities first
