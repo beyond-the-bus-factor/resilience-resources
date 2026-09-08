@@ -109,4 +109,4 @@ From the [scenario cards](../scenario-cards.md):
 
 - [Setting up legacy contacts](../set-up-legacy-contacts.md), which covers the code hosts directly
 - [Legacy checklist](../legacy-checklist.md), for keys and credentials
-- [Sunsetting a project](../sunsetting-a-project.md), if continuing is no longer the right answer
+- [Closing something down](../sunsetting-a-project.md), if continuing is no longer the right answer

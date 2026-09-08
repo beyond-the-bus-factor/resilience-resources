@@ -31,8 +31,8 @@ The audit is deliberately neutral. Each overlay translates the vocabulary, adds 
 - [Setting up legacy contacts](resources/set-up-legacy-contacts.md)
 A detailed list of how to set up legacy contacts across digital platforms in the event something happens to you, ensuring someone is able to access your important accounts - both personal and organisational.
 
-- [Sunsetting a project](resources/sunsetting-a-project.md)
-Useful resources and tips when you’re considering shutting down or sunsetting an open source project.
+- [Closing something down](resources/sunsetting-a-project.md)
+How to stop well, which is sometimes the right answer and is almost always done badly. Deciding when the time has come, telling people properly, the last day, and preserving the record rather than destroying it. Covers what changes by setting, including the fact that closing a charity is a legal process rather than only a decision.
 
 #### Succession planning
 

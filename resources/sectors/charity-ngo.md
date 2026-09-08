@@ -112,3 +112,4 @@ From the [scenario cards](../scenario-cards.md):
 
 - [Legacy checklist](../legacy-checklist.md), which matters most for whoever holds the bank access
 - [Succession planning guide](../succession-planning-guide.md), and read the governance handoff section with your governing document open
+- [Closing something down](../sunsetting-a-project.md), which for a charity is a legal process with the trustees carrying the duty

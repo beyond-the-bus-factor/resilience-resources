@@ -90,3 +90,4 @@ From the [scenario cards](../scenario-cards.md):
 
 - [Setting up legacy contacts](../set-up-legacy-contacts.md), which is the cheapest hour on this whole site
 - [Legacy checklist](../legacy-checklist.md), and do the access section even if you skip the rest
+- [Closing something down](../sunsetting-a-project.md), if winding up is the answer, and it often is

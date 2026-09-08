@@ -118,3 +118,4 @@ From the [scenario cards](../scenario-cards.md):
 
 - [Succession planning guide](../succession-planning-guide.md), particularly the ninety day timeline, which maps onto a notice period
 - [Legacy checklist](../legacy-checklist.md), for whoever holds credentials nobody else has
+- [Closing something down](../sunsetting-a-project.md), for a product or service reaching the end, including what your contracts already promised
