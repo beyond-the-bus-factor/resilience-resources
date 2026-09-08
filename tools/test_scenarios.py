@@ -13,6 +13,7 @@ complained about until somebody printed it.
 """
 
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -32,7 +33,12 @@ def read(path):
         return fh.read()
 
 
-def write(path, text, newline=None):
+def write(path, text, newline=""):
+    """Write without newline translation.
+
+    The default of None would rewrite a scenario file's line endings on
+    Windows while restoring it, dirtying the working tree from a test run.
+    """
     with open(path, "w", encoding="utf-8", newline=newline) as fh:
         fh.write(text)
 
@@ -67,6 +73,9 @@ def main():
     check("sectors are all known",
           all(x in scenarios.SECTORS for s in all_of_them for x in s["sectors"]))
     check("slugs are unique", len({s["slug"] for s in all_of_them}) == len(all_of_them))
+    check("slugs are safe as anchors and ids",
+          all(scenarios.SLUG.match(s["slug"]) for s in all_of_them))
+    check("minutes are all positive", all(s["minutes"] > 0 for s in all_of_them))
 
     print("Bullet parsing")
     check("a horizontal rule is not a bullet",
@@ -83,6 +92,16 @@ def main():
     check_raises("unknown category", sample,
                  lambda s: s.replace("category: governance", "category: misc"))
     check_raises("missing front matter", sample, lambda s: s.split("---", 2)[2])
+    check_raises("slug with a space in it", sample,
+                 lambda s: s.replace("slug: never-happens", "slug: never happens"))
+    check_raises("slug with a quote in it", sample,
+                 lambda s: s.replace("slug: never-happens", 'slug: never"happens'))
+    check_raises("slug not matching the filename", sample,
+                 lambda s: s.replace("slug: never-happens", "slug: something-else"))
+    check_raises("empty summary", sample,
+                 lambda s: re.sub(r'summary: ".*"', 'summary: ""', s))
+    check_raises("minutes of zero", sample,
+                 lambda s: s.replace("minutes: 10", "minutes: 0"))
     check_raises("sectors written as a bare string", sample,
                  lambda s: s.replace("sectors: [open-source, charity, corporate, small-team]",
                                      "sectors: charity"))
@@ -90,14 +109,14 @@ def main():
     print("Line endings")
     original = read(sample)
     try:
-        write(sample, original.replace("\n", "\r\n"), newline="")
+        write(sample, original.replace("\n", "\r\n"))
         try:
             scenarios.load()
             check("a CRLF source file still parses", True)
         except ValueError:
             check("a CRLF source file still parses", False)
     finally:
-        write(sample, original, newline="")
+        write(sample, original)
 
     print()
     if FAILURES:

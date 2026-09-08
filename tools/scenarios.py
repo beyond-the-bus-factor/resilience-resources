@@ -29,6 +29,11 @@ CATEGORIES = {
 
 DIFFICULTY = {1: "Warm up", 2: "Standard", 3: "Hard"}
 
+# The slug becomes an anchor id and a fragment link in the generated markdown,
+# and a key in the website data. Keep it to characters that mean the same thing
+# in all three, so nothing has to be escaped downstream.
+SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+
 
 def _front_matter(text):
     # Tolerate CRLF, so a file edited on Windows still parses.
@@ -85,6 +90,17 @@ def load():
         missing = [k for k in ("title", "slug", "category", "sectors", "difficulty", "summary") if k not in meta]
         if missing:
             raise ValueError(f"{name}: missing front matter: {', '.join(missing)}")
+        for field in ("title", "summary"):
+            if not isinstance(meta[field], str) or not meta[field].strip():
+                raise ValueError(f"{name}: {field} must be a non-empty string")
+        if not isinstance(meta["slug"], str) or not SLUG.match(meta["slug"]):
+            raise ValueError(f"{name}: slug must be lowercase letters, digits and single "
+                             f"hyphens, for example sole-signatory. Got {meta['slug']!r}")
+        if meta["slug"] != os.path.splitext(name)[0]:
+            raise ValueError(f"{name}: slug '{meta['slug']}' does not match the filename")
+        minutes = meta.get("minutes", 10)
+        if not isinstance(minutes, int) or minutes <= 0:
+            raise ValueError(f"{name}: minutes must be a positive whole number, got {minutes!r}")
         if not isinstance(meta["sectors"], list) or not meta["sectors"]:
             raise ValueError(f"{name}: sectors must be a non-empty list in square brackets, "
                              f"for example [charity, corporate]. Got {meta['sectors']!r}")
@@ -113,7 +129,7 @@ def load():
             "category": meta["category"],
             "sectors": meta["sectors"],
             "difficulty": int(meta["difficulty"]),
-            "minutes": int(meta.get("minutes", 10)),
+            "minutes": minutes,
             "summary": meta["summary"],
             "situation": [p.strip() for p in parts["the situation"].split("\n\n") if p.strip()],
             "questions": _bullets(parts["questions to work through"]),
