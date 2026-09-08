@@ -16,8 +16,16 @@ import os
 import re
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import importlib.util
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
 import scenarios  # noqa: E402
+
+# build-deck.py cannot be imported by name because of the hyphen.
+_spec = importlib.util.spec_from_file_location("build_deck", os.path.join(HERE, "build-deck.py"))
+build = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(build)
 
 FAILURES = []
 
@@ -100,11 +108,22 @@ def main():
                  lambda s: s.replace("slug: never-happens", "slug: something-else"))
     check_raises("empty summary", sample,
                  lambda s: re.sub(r'summary: ".*"', 'summary: ""', s))
+    check_raises("difficulty that is not a number", sample,
+                 lambda s: s.replace("difficulty: 1", "difficulty: hard"))
     check_raises("minutes of zero", sample,
                  lambda s: s.replace("minutes: 10", "minutes: 0"))
     check_raises("sectors written as a bare string", sample,
                  lambda s: s.replace("sectors: [open-source, charity, corporate, small-team]",
                                      "sectors: charity"))
+
+    print("Generated markdown")
+    check("a pipe in a title is escaped for the summary table",
+          build.cell("A | B") == "A \\| B")
+    table = build.build_markdown(all_of_them).split("## What is in the deck")[1]
+    header = table.split("\n")[3]
+    check("every summary table row has the right number of columns",
+          all(row.count("|") == header.count("|")
+              for row in table.split("\n") if row.startswith("|")))
 
     print("Line endings")
     original = read(sample)

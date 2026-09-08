@@ -111,8 +111,9 @@ def load():
             if sector not in SECTORS:
                 raise ValueError(f"{name}: unknown sector '{sector}', "
                                  f"expected one of {', '.join(SECTORS)}")
-        if int(meta["difficulty"]) not in DIFFICULTY:
-            raise ValueError(f"{name}: difficulty must be 1, 2 or 3, got {meta['difficulty']}")
+        if not isinstance(meta["difficulty"], int) or meta["difficulty"] not in DIFFICULTY:
+            raise ValueError(f"{name}: difficulty must be 1, 2 or 3 written as a bare number, "
+                             f"got {meta['difficulty']!r}")
 
         # A misspelled or missing heading would otherwise produce a card with an
         # empty half, and nothing would say so until somebody printed it.
@@ -128,7 +129,7 @@ def load():
             "slug": meta["slug"],
             "category": meta["category"],
             "sectors": meta["sectors"],
-            "difficulty": int(meta["difficulty"]),
+            "difficulty": meta["difficulty"],
             "minutes": minutes,
             "summary": meta["summary"],
             "situation": [p.strip() for p in parts["the situation"].split("\n\n") if p.strip()],

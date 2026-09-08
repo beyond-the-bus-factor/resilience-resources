@@ -25,6 +25,11 @@ DECK = os.path.join(ROOT, "deck")
 
 # ---------------------------------------------------------------- markdown
 
+def cell(text):
+    """A pipe in a title would end the table column early."""
+    return str(text).replace("|", "\\|")
+
+
 def build_markdown(scenarios):
     out = ["# Scenario cards", "",
            "Twenty five situations to put in front of a team and work through before one of "
@@ -43,7 +48,7 @@ def build_markdown(scenarios):
             "|---|---|---|---|"]
     for s in scenarios:
         sectors = ", ".join(SECTORS[x] for x in s["sectors"])
-        out.append(f"| [{s['title']}](#{s['slug']}) | {CATEGORIES[s['category']]} | {sectors} | "
+        out.append(f"| [{cell(s['title'])}](#{s['slug']}) | {CATEGORIES[s['category']]} | {sectors} | "
                    f"{DIFFICULTY[s['difficulty']]} |")
     out.append("")
 
