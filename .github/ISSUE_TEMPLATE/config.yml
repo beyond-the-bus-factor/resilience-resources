@@ -2,7 +2,13 @@ blank_issues_enabled: true
 contact_links:
   - name: GitHub Discussions
     url: https://github.com/beyond-the-bus-factor/resilience-resources/discussions
-    about: For questions, sharing stories, or general discussion
+    about: Questions, stories, and anything that is not yet a specific change
+  - name: How to contribute
+    url: https://github.com/beyond-the-bus-factor/resilience-resources/blob/main/CONTRIBUTING.md
+    about: The structure, the house style CI enforces, and how to add a scenario
+  - name: Running a session
+    url: https://github.com/beyond-the-bus-factor/resilience-resources/blob/main/resources/facilitator-guide.md
+    about: The facilitator's guide, for anyone running a scenario workshop
   - name: Session materials
-    url: https://github.com/Beyond-the-bus-factor/resilience-resources/blob/main/sessions
-    about: Workshop guides from sessions covering the bus factor
+    url: https://github.com/beyond-the-bus-factor/resilience-resources/tree/main/sessions
+    about: Facilitation guides from sessions that have been run
