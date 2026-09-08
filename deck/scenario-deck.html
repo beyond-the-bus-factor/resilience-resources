@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Scenario cards, printable deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+@page { size: A4 portrait; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color: #15201d; background: #fff;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.sheet {
+  width: 210mm; height: 297mm;
+  display: flex; flex-direction: column;
+  page-break-after: always; break-after: page;
+}
+.sheet:last-child { page-break-after: auto; break-after: auto; }
+.card {
+  position: relative;
+  width: 210mm; height: 148.5mm;
+  padding: 10mm 11mm 8mm;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.card + .card { border-top: 0.3mm dashed #b9c2be; }
+
+.card-top {
+  display: flex; align-items: baseline; gap: 3mm;
+  font-size: 6.6pt; letter-spacing: 0.09em; text-transform: uppercase;
+  font-weight: 600; color: #5f6c68;
+  border-bottom: 0.3mm solid #ddd8ce; padding-bottom: 2mm; margin-bottom: 3mm;
+}
+.card-top .cat { color: #845aa8; }
+.card-top .fits { margin-left: auto; letter-spacing: 0.06em; font-weight: 500; }
+
+h2 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 17pt; font-weight: 600; line-height: 1.12;
+  margin: 0 0 1.5mm; letter-spacing: -0.01em;
+}
+.lede {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 9.6pt; font-style: italic; color: #46534f;
+  margin: 0 0 3.5mm; line-height: 1.35;
+}
+.body { display: flex; gap: 7mm; flex: 1; min-height: 0; }
+.col-a { flex: 1.45; min-width: 0; }
+.col-b { flex: 1; min-width: 0; }
+h3 {
+  font-size: 6.6pt; letter-spacing: 0.09em; text-transform: uppercase;
+  font-weight: 700; color: #5f6c68; margin: 0 0 1.8mm;
+}
+.col-b h3 { margin-top: 0; }
+p { font-size: 8.5pt; line-height: 1.42; margin: 0 0 2mm; }
+ul { margin: 0 0 3.5mm; padding-left: 4mm; }
+li { font-size: 8.5pt; line-height: 1.36; margin-bottom: 1.4mm; }
+.think li { font-size: 7.6pt; color: #46534f; line-height: 1.32; margin-bottom: 1mm; }
+.think h3 { color: #845aa8; }
+
+.card-foot {
+  display: flex; align-items: center; gap: 2mm;
+  border-top: 0.3mm solid #ddd8ce; padding-top: 2mm; margin-top: 2mm;
+  font-size: 6.4pt; color: #5f6c68; letter-spacing: 0.05em;
+}
+.card-foot .n { font-weight: 700; color: #183629; }
+.card-foot .src { margin-left: auto; }
+.dots { display: inline-flex; gap: 0.9mm; margin-left: 1mm; }
+.dot { width: 1.5mm; height: 1.5mm; border-radius: 50%; background: #ddd8ce; }
+.dot.on { background: #845aa8; }
+
+/* cover */
+.cover { justify-content: center; }
+.cover h1 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 26pt; font-weight: 600; margin: 0 0 3mm; letter-spacing: -0.015em;
+}
+.cover .lede { font-size: 11pt; max-width: 120mm; }
+.cover ol { padding-left: 5mm; margin: 0 0 4mm; }
+.cover li { font-size: 9pt; margin-bottom: 1.6mm; }
+.cover .two { display: flex; gap: 10mm; }
+</style>
+</head>
+<body>
+<div class="sheet"><section class="card cover">
+  <h1>Scenario cards</h1>
+  <p class="lede">Twenty five situations to work through before one of them actually happens.
+  Print, cut along the dashed line, and put one in front of a group.</p>
+  <div class="two">
+    <div>
+      <h3>Running a session</h3>
+      <ol>
+        <li>Groups of three or four</li>
+        <li>One card each, drawn or chosen</li>
+        <li>Ten minutes on the questions</li>
+        <li>Somebody writes down what nobody could answer</li>
+        <li>Sixty seconds per group to share back</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Reading a card</h3>
+      <ul>
+        <li><strong>Fits</strong> names the settings the situation translates to</li>
+        <li><strong>Dots</strong> are how hard the discussion tends to be, not how bad the crisis is</li>
+        <li><strong>Think about</strong> is for the facilitator, and is best left until the group has had a go</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">Beyond the Bus Factor</span>
+    <span>Full guide at beyondthebusfactor.org/scenarios/</span>
+    <span class="src">Released under CC0. Adapt it, rebrand it, no credit needed.</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">Operational</span>
+    <span class="fits">Company, Charity and NGO, Small team</span>
+  </div>
+  <h2>The contractor who built it</h2>
+  <p class="lede">The contract ended in March, the invoice is paid, and the only person who understands it has moved on.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Three years ago you paid a contractor to build the system your operations now run on. He was good, he delivered, the contract ended in March last year and the final invoice was paid.</p><p>Since then it has needed nothing. Last week it started failing. Your internal team have looked at it and report that it is competent work, undocumented, written in a framework nobody here uses, and deployed to an account nobody here can name the owner of.</p><p>The domain renews automatically to a card that belonged to someone who has left. The source is in a repository under his personal account, which you have read access to because he added someone by hand, and that someone left too.</p><p>You have emailed him. He replied politely that he is fully booked for the next four months and can do an hour at his current day rate.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you buy with that hour if you take it?</li><li>Who owns the repository, the hosting account and the domain, and can you prove it?</li><li>What did the original contract say about handover, documentation and intellectual property?</li><li>Do you fix this, rebuild it, or replace it, and who decides?</li><li>What goes into the next contract you sign?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Handover as a deliverable with its own acceptance criteria</li><li>Accounts, domains and repositories registered to individuals</li><li>Work that is invisible while it keeps working</li><li>The cost of the cheap option arriving three years late</li><li>Procurement as a bus factor decision</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">01 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">Operational</span>
+    <span class="fits">Open source, Charity and NGO, Company</span>
+  </div>
+  <h2>The formalised handover</h2>
+  <p class="lede">The checklist is complete and the successor is drowning, because the checklist covered the what and none of the why.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>You've decided to step down as project lead in six months. You have a documented succession process (inspired by Joomla's leadership transitions) with clear milestones, handoff checklists, and a transition timeline.</p><p>You've identified your successor and they've agreed. The community knows it's happening. Everything should be straightforward.</p><p>But as you work through the handoff checklist, you realise how much critical knowledge isn't actually documented. The 'why' behind technical decisions. The history of community conflicts. The relationships with sponsors. The unwritten rules about how decisions really get made. Your documented process covers the what, but not the how or why.</p><p>Your successor is getting overwhelmed. They're discovering that being project lead isn't only about the formal responsibilities - it's about all the invisible work and institutional knowledge you carry.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What needs to be in a succession handoff beyond access and responsibilities?</li><li>How do you transfer institutional knowledge and context?</li><li>What's the difference between a checklist and actual readiness?</li><li>How do you make the invisible work visible?</li><li>What does good documentation look like for succession?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Formal vs informal knowledge</li><li>The invisible labour of leadership</li><li>Realistic timelines for handoffs</li><li>Supporting successors through the learning curve</li><li>What can't be documented</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">02 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">Operational</span>
+    <span class="fits">Charity and NGO, Small team</span>
+  </div>
+  <h2>The sole signatory</h2>
+  <p class="lede">Payroll runs on Thursday and the only person who can authorise it is in intensive care.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your finance officer has been in a road accident. He is alive, in intensive care, and will not be working for months.</p><p>He is the only person set up on the online banking. He is the only named signatory the bank has on file who is currently active, the second signatory being a trustee who resigned fourteen months ago and was never replaced on the mandate. He runs payroll through a system only he has logged into. He holds the relationship with your accountant and the pension provider.</p><p>Payroll runs on Thursday. Eleven people are paid from it, several of whom cannot absorb a late payment. There is a grant claim due in nine days that requires a finance signature, and if it misses the deadline you lose the money.</p><p>Nobody wants to talk about bank mandates while a colleague is in hospital.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you do in the next twenty four hours to get Thursday's payroll out?</li><li>Who has the authority to change the bank mandate, and how long does that actually take?</li><li>How do you approach his family, and what is reasonable to ask of them?</li><li>What do you tell staff, and what do you keep private?</li><li>Once he is stable, what do you change, and who owns making sure it stays changed?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Bank mandates and authorised signatories as a live risk, not paperwork</li><li>The gap between a policy requiring two signatories and the reality</li><li>Doing the practical thing without treating a colleague as a problem</li><li>Statutory and funder deadlines that do not pause for emergencies</li><li>Reviewing the mandate every time a trustee leaves</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">03 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">Operational</span>
+    <span class="fits">Open source, Charity and NGO, Company, Small team</span>
+  </div>
+  <h2>The sudden disappearance</h2>
+  <p class="lede">Nobody has heard from the one person who can deploy, and a fix cannot wait.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your lead maintainer hasn't responded to messages in 72 hours. This is completely unlike them - they're usually very responsive. Their phone goes straight to voicemail. You've tried their personal email, work email, chat platforms - nothing. You have no way to reach their family or emergency contacts.</p><p>Your project has a critical security vulnerability that needs to be patched and deployed immediately. Only the missing maintainer has ever done a production deployment.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you do in the first 24 hours?</li><li>Who has the authority to decide what happens next?</li><li>How do you access the systems you need to deploy the fix?</li><li>What do you tell the community?</li><li>How do you handle this if they never return?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Emergency access procedures</li><li>Deployment documentation and access</li><li>Communication protocols</li><li>Who can make emergency decisions</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">04 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">Operational</span>
+    <span class="fits">Charity and NGO</span>
+  </div>
+  <h2>The safeguarding lead</h2>
+  <p class="lede">A statutory role, an open case, and the only trained person left on Friday.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your designated safeguarding lead left on Friday. It was not amicable and she is not taking calls.</p><p>She was the only person in the organisation with the full training. She held two open cases, one of which involves an ongoing referral to the local authority. Her case notes are in a folder on the shared drive that turns out to have restricted permissions, and the person who set those permissions was her.</p><p>Your policy names the designated lead by job title, and that post is now vacant. Your funders require a named lead. Your insurance requires a named lead. Two of your delivery partners will not let volunteers on site without one.</p><p>Your chief executive has done the basic training, four years ago. Your chair asks on Monday morning whether this is something you can leave until the new appointment is made.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What is your answer to the chair?</li><li>Who is the named lead as of this morning, and what makes that legitimate?</li><li>How do you get access to the case notes, and what if you cannot?</li><li>What do you owe the people in the open cases, and who tells them?</li><li>What has to be true about this role before you appoint the next person?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Roles with statutory or regulatory weight and no bench behind them</li><li>Access permissions set by the person who then leaves</li><li>Deputies as a requirement rather than a nice idea</li><li>Continuity of care for the people at the other end of a case</li><li>Policies that name a post nobody currently holds</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">05 / 25</span>
+    <span>Hard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">Operational</span>
+    <span class="fits">Open source, Company</span>
+  </div>
+  <h2>The security incident</h2>
+  <p class="lede">A live exploit, a twelve hour window, and the only person with the signing keys is unreachable.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>A critical security vulnerability in your project is being actively exploited. You need to patch it, do a security release, and coordinate disclosure - all in the next 12 hours.</p><p>Your security response person is on a two-week holiday in a remote area with no internet. They're the only one who knows your security release process, has the GPG keys for signing releases, and maintains relationships with the security research community.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>How do you handle the security release without your security person?</li><li>Who has access to release signing keys?</li><li>How do you coordinate disclosure without the usual relationships?</li><li>What do you tell affected users?</li><li>What changes do you make to prevent this situation?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Security process documentation and bus factor</li><li>Emergency access to critical credentials</li><li>Distributed security knowledge</li><li>Crisis communication</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">06 / 25</span>
+    <span>Hard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">Operational</span>
+    <span class="fits">Company</span>
+  </div>
+  <h2>The system nobody understands</h2>
+  <p class="lede">He wrote it in 2014, it moves nine million a month, and his notice period ends in four weeks.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>A principal engineer has resigned. Four weeks' notice, leaving for a competitor, entirely within his rights.</p><p>In 2014 he wrote the reconciliation service. It sits between your billing platform and the ledger, and it moves around nine million a month. It has no owning team. It is not in the service catalogue. Its runbook is a wiki page last edited in 2019 that describes a deployment process which no longer exists.</p><p>Nobody else has ever deployed it. Twice in the last year it failed overnight and he fixed it before anyone noticed, which is why it has never been escalated. Your architecture review board has no record of it. Your business continuity plan covers the data centre, the network and the office, and says nothing about him.</p><p>His manager suggests a knowledge transfer session. He has offered two hours.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you actually do with four weeks?</li><li>Is two hours of his time the constraint, or is your ability to absorb it the constraint?</li><li>What do you do about the other systems like this that you have not found yet?</li><li>Who owns this service at 9am on the Monday after he leaves?</li><li>What would you have wanted your continuity plan to have said about this?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Business continuity plans that cover buildings and not knowledge</li><li>Systems that stay invisible because someone keeps fixing them before anyone notices</li><li>Knowledge transfer as supervised work, not a meeting</li><li>Finding the rest of them before the next resignation</li><li>Notice periods as a fixed budget you have to spend well</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">07 / 25</span>
+    <span>Hard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">Governance, legal and finance</span>
+    <span class="fits">Open source, Small team</span>
+  </div>
+  <h2>Sunsetting a small project</h2>
+  <p class="lede">Two hundred stars, fifty users, no energy left, and guilt every time an email arrives.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>You created a small open source library five years ago that solves a specific problem. It has about 200 stars, maybe 50 active users based on download stats, and gets an issue or PR every few months.</p><p>You haven't touched it in two years. Your interests have moved on. You have a demanding job, young kids, and no energy for maintenance. Every time you see an email notification, you feel guilty.</p><p>The project works fine for what it does. But dependencies are outdated, there are a few open security issues, and the documentation references tools that no longer exist. It's not dead, but it's not really alive either.</p><p>You could try to find a maintainer, but you don't think it deserves one. Better alternatives exist now. But people are using it. Do you just abandon it? Archive it? Sunset it properly? What's your responsibility here?</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>When is sunsetting the right choice vs finding a successor?</li><li>What do you owe to your users when you want to end a project?</li><li>How do you sunset responsibly vs just walking away?</li><li>What's the difference between archiving and abandoning?</li><li>How do you let go without guilt?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Not every project needs to live forever</li><li>Responsible deprecation practices</li><li>Migration paths and documentation</li><li>The guilt of letting go</li><li>When to sunset vs when to find successors</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">08 / 25</span>
+    <span>Warm up<span class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">Governance, legal and finance</span>
+    <span class="fits">Open source, Charity and NGO, Company, Small team</span>
+  </div>
+  <h2>The succession planning that never happens</h2>
+  <p class="lede">Two years of meaning to. Everything urgent keeps winning.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>You've been meaning to work on succession planning for two years. You know it's important. You've bookmarked articles, you attended a conference talk about it, you have it on your someday/maybe list.</p><p>But your project has 47 open issues, three pull requests waiting for review, a security vulnerability that needs patching, and two major features in progress. Your day job is demanding. Your family needs you. The community is waiting for the next release.</p><p>Every time you think 'I should really work on succession planning this week,' something urgent comes up. The weeks turn into months turn into years. You're now the single point of failure for a project with 50,000 users, and you're exhausted. You can't keep going, but you also can't stop.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What would it take for you to actually prioritise succession planning?</li><li>How do you create space for it when everything feels urgent?</li><li>What's the forcing function that would make you do it?</li><li>Could you build it into regular project rhythms instead of a one-time task?</li><li>What's the smallest first step you could take this week?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Important vs urgent</li><li>What it would take to make you stop</li><li>Building succession into ongoing work</li><li>The cost of not planning</li><li>Creating forcing functions deliberately</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">09 / 25</span>
+    <span>Warm up<span class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">Governance, legal and finance</span>
+    <span class="fits">Charity and NGO, Small team</span>
+  </div>
+  <h2>The chair's term ends</h2>
+  <p class="lede">Nine months to find a chair, a board of five, and three of them time out in the same year.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your chair completes his second and final term in nine months. The governing document is unambiguous, and he has said he will not seek a variation.</p><p>The board has five trustees against a minimum of five. Two others reach the end of their terms in the same year, one of them your treasurer. Recruitment last year produced two applicants, neither appointable. Of the remaining trustees, one has never chaired anything, one has said openly that she does not want it, and one joined four months ago.</p><p>Board meetings currently work because the chair does most of the work between them. He drafts the agenda, chases papers, handles the difficult conversations with the chief executive one to one, and smooths over the item that would otherwise take an hour.</p><p>Nobody has ever seen the board function without him doing that.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you do first, recruit trustees or develop a chair?</li><li>What happens to quorum and to your governing document if the timeline slips?</li><li>How much of the chair's work is the role, and how much is him compensating for the board?</li><li>What would make this board a place someone capable would want to join?</li><li>Which of these decisions belongs to the board and which to the chair who is leaving?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Staggering terms so departures do not cluster</li><li>Recruiting for a board rather than for a vacancy</li><li>Work absorbed by one person that hides a structural problem</li><li>Deputy or vice chair roles as development, not decoration</li><li>The governing document as a hard constraint on your timeline</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">10 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">Governance, legal and finance</span>
+    <span class="fits">Charity and NGO</span>
+  </div>
+  <h2>The grant relationships</h2>
+  <p class="lede">Sixty per cent of your income runs through one person's inbox and nobody else has met the funders.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your fundraising lead has resigned to take a job at a foundation. She leaves in a month and has been entirely reasonable about it.</p><p>She holds every relationship with every funder. Sixty per cent of your income comes from four grants she wrote and manages. The reporting for all four is in her head and her personal drive. She knows which programme officer prefers a phone call, which foundation is restructuring without having announced it, and which grant has an unwritten expectation attached that does not appear in the agreement.</p><p>Her handover notes, when they arrive, are a spreadsheet of deadlines. Accurate, and it tells you nothing about the relationships.</p><p>Two reports are due in the quarter after she leaves. One funder has already asked, in passing, what her departure means for the partnership.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you ask her to do in her last month, and what is realistic to get?</li><li>How do you introduce her successor to funders without signalling instability?</li><li>What do you say to the funder who has already asked?</li><li>Which of these relationships should sit with a trustee or the chief executive instead of one staff member?</li><li>What would have made this a two week problem instead of a six month one?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Concentration risk in income as well as in people</li><li>Relationships held by an organisation vs held by a person</li><li>Handover as a set of introductions, not a document</li><li>Funders responding to competence and continuity</li><li>The unwritten expectations attached to money</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">11 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">Governance, legal and finance</span>
+    <span class="fits">Company, Open source</span>
+  </div>
+  <h2>The reorganisation</h2>
+  <p class="lede">The team is being dissolved. The product has four thousand customers and is not being dissolved.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your team is being dissolved in the reorganisation announced last week. Six people are moving to three different groups. You find out where you are going on Friday.</p><p>The product your team built has around four thousand paying customers, including two of your largest accounts, who use it for something they describe as business critical. It is not being discontinued. Nobody has said who owns it. When you asked, you were told this would be worked through in the transition planning.</p><p>Your on-call rotation for it dissolves with the team. Three of the six are already interviewing elsewhere. The runbooks are good, because you insisted on them, which is why leadership is relaxed about this.</p><p>Renewal season for both large accounts starts in seven weeks.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you escalate this week, to whom, and how do you frame it so it is heard?</li><li>Who is on call for this product in a fortnight?</li><li>What do you tell the two large accounts, and who is allowed to tell them?</li><li>What do you document now, while the six people are still reachable?</li><li>Where does the responsibility sit if nobody accepts ownership?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Reorganisations that move people and forget what the people were carrying</li><li>Good documentation being used as a reason not to plan</li><li>Escalating a risk you cannot fix yourself</li><li>The gap between a product being supported and someone being accountable for it</li><li>Customers who find out by having an incident</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">12 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">Governance, legal and finance</span>
+    <span class="fits">Open source, Company</span>
+  </div>
+  <h2>Sunsetting a company-owned project</h2>
+  <p class="lede">Priorities shifted, the work time is gone, and the company owns the trademark.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your company open sourced a tool three years ago as part of a strategic initiative. It got decent adoption - about 2,000 stars, an active community, some enterprise users. You've been maintaining it as part of your job.</p><p>Now company priorities have shifted. The product this tool supported is being discontinued. Your team is being reorganised. Your manager has made it clear: no more work time for this project.</p><p>You still believe in the project. The community is active. Some users depend on it for critical infrastructure. But without company support, you can't maintain it properly. You don't have time to do it unpaid, and finding outside maintainers for a company-owned project is complicated.</p><p>The code is already open source, but the company owns the trademark, the domain, and has copyright. You can't just hand it to someone else. Do you sunset it? Try to spin it out? Let it slowly die? What about the users who depend on it?</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What's your responsibility to the community vs your employer?</li><li>How do you sunset a project with active users?</li><li>Can you spin it out to a foundation or independent maintainers?</li><li>What happens to trademarks, domains, and IP?</li><li>How do you communicate this to enterprise users?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Corporate vs community interests</li><li>Legal and IP complications</li><li>Your personal obligations vs company decisions</li><li>Responsible deprecation with dependencies</li><li>The politics of sunsetting company projects</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">13 / 25</span>
+    <span>Hard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">Governance, legal and finance</span>
+    <span class="fits">Open source, Company</span>
+  </div>
+  <h2>The corporate acquisition</h2>
+  <p class="lede">Your sponsor bought your maintainer's employer, and the contract is with legal.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your biggest corporate sponsor has acquired the company that employs your lead maintainer and two core team members. The acquisition includes an intellectual property clause that potentially affects their ability to contribute to your project.</p><p>Your lead maintainer sends you a private message: 'I think I can still contribute, but my new employment contract is complicated. Legal is reviewing it. I might need to step back from leadership roles. Can we talk?'</p><p>Meanwhile, community members are panicking on social media about the project being 'taken over by BigCorp.'</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you need to know about the legal situation?</li><li>How do you protect the project's independence?</li><li>Who takes over leadership if they need to step back?</li><li>How do you reassure the community?</li><li>What governance changes do you need?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Legal independence and project ownership</li><li>Leadership succession in complex situations</li><li>Community trust and communication</li><li>Reducing corporate key person dependencies</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">14 / 25</span>
+    <span>Hard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">Governance, legal and finance</span>
+    <span class="fits">Charity and NGO, Small team</span>
+  </div>
+  <h2>The founder chief executive</h2>
+  <p class="lede">Twenty five years in, the funders think she is the charity, and she wants to retire next spring.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your chief executive founded the charity twenty five years ago and has run it ever since. She has told the board, in confidence, that she intends to retire next spring.</p><p>She is on first name terms with every major funder. Two of your largest grants were awarded, in the funders' own words, because of her. She sits on three sector working groups. Journalists ring her directly. Staff joined because of her. When the board disagrees with her, the board usually loses, and mostly the board has been right to lose.</p><p>There is no deputy. The senior team is three people who each run one programme well and have never been asked to think about the whole organisation. Your reserves cover four months. One of the two large grants comes up for renewal eight months after she goes.</p><p>The board has known this day was coming for a decade and has never put anything in writing.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What has to happen before she announces this publicly, and in what order?</li><li>How do you find out what she actually does, given that she has never had to write it down?</li><li>Do you recruit externally, promote internally, or restructure the role so it is a job a normal person can do?</li><li>What do you say to the funder whose renewal lands eight months in?</li><li>What does the board need to change about how it works, given it let this happen?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>The difference between replacing a person and replacing a role</li><li>Founder transitions where the founder stays on the board</li><li>Relationships as an organisational asset that nobody has inventoried</li><li>Reserves as the thing that buys you time to do this properly</li><li>Whether the board is capable of running this process</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">15 / 25</span>
+    <span>Hard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">Governance, legal and finance</span>
+    <span class="fits">Open source, Small team</span>
+  </div>
+  <h2>The hostile fork</h2>
+  <p class="lede">A co-founder walks, takes three contributors, and claims to be the real project.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your project's co-founder, who has significant technical influence and a personal following in the community, announces they're forking the project. They claim the current leadership has 'lost sight of the original vision' and they're creating a 'true community-led' alternative.</p><p>They've convinced three of your most active contributors to join them. They're hosting their fork under a similar name, causing confusion in the community. Half your Discord server is now debating which version is 'legitimate.'</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>How do you respond publicly?</li><li>What do you do about the contributors who are leaving?</li><li>How do you handle the community division?</li><li>What governance or communication failures led to this?</li><li>How do you move forward as a project?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Conflict resolution processes</li><li>Governance legitimacy and transparency</li><li>Community communication</li><li>Handling competing visions</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">16 / 25</span>
+    <span>Hard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">People and community</span>
+    <span class="fits">Open source, Charity and NGO, Small team</span>
+  </div>
+  <h2>The successor conversation</h2>
+  <p class="lede">There is one obvious person to ask, and you keep not asking.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>You've been the solo maintainer of a moderately popular open source project for four years. You're starting to burn out and need to step back, but there's no one else with maintainer access.</p><p>There's one contributor, Sarah, who's been consistently active for the past year. She's competent, trustworthy, and the community likes her. She has a full-time job and contributes in her spare time.</p><p>You know you need to ask her to become a co-maintainer, but you keep putting it off. You're worried she'll feel obligated to say yes even if she doesn't want to. You don't know how to frame it - is this a favour you're asking? A responsibility you're giving her? How do you explain the time commitment when you barely manage it yourself? And what if she says no and it makes things awkward?</p><p>Meanwhile, you're getting more exhausted and the project is suffering.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>How do you approach Sarah about becoming a co-maintainer?</li><li>What do you actually say? How do you frame the conversation?</li><li>How do you describe the burden and time commitment without dressing it up?</li><li>What if she says no - then what?</li><li>How do you build in ways for her to say no comfortably?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>The power dynamics of the ask</li><li>Describing the burden plainly vs making it appealing</li><li>Creating an easy 'no' option</li><li>Trust and vetting</li><li>What if there literally is no Sarah - what then?</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">17 / 25</span>
+    <span>Warm up<span class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">People and community</span>
+    <span class="fits">Open source, Charity and NGO, Company, Small team</span>
+  </div>
+  <h2>The successor's doubt</h2>
+  <p class="lede">On paper you are ready. You are certain you are not.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>You've been asked to step up as co-maintainer of a popular open source project. You're honoured, excited, and absolutely terrified.</p><p>You've been a contributor for 18 months. You know the codebase reasonably well. The current maintainer trusts you and has been mentoring you. The community seems supportive. On paper, you're ready.</p><p>But you don't feel ready. The current maintainer makes decisions confidently. They know the history. They have relationships with sponsors and key contributors. They handle conflicts gracefully. When you look at what they do, you think 'I could never do that.'</p><p>You keep finding reasons to delay accepting the role. Maybe you should contribute for another year first? Maybe there's someone better? What if you make a mistake that breaks things for thousands of users? What if people don't respect your authority? What if you're not actually as good as the current maintainer thinks?</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>How do you know if you're actually not ready vs imposter syndrome?</li><li>What support do you need to feel legitimate as a maintainer?</li><li>How do you step into authority you don't yet feel you deserve?</li><li>What would help you feel 'ready enough'?</li><li>Is anyone ever truly ready?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Imposter syndrome in leadership transitions</li><li>The gap between competence and confidence</li><li>What makes someone legitimate as a maintainer</li><li>Support structures for new leaders</li><li>Learning whilst leading vs being perfect first</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">18 / 25</span>
+    <span>Warm up<span class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">People and community</span>
+    <span class="fits">Charity and NGO, Small team</span>
+  </div>
+  <h2>The volunteer coordinator</h2>
+  <p class="lede">Ninety volunteers, one person who knows all of them, and a database nobody has updated since 2023.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your volunteer coordinator is going on maternity leave in ten weeks. She has offered to help however she can, which is more than you are entitled to ask for.</p><p>She has run volunteering for six years. There are around ninety active volunteers. She knows which two must not be rota'd together, who is reliable in a crisis and who says yes and then does not turn up, who is grieving, who is one bad shift away from leaving, and which three could run a session on their own if asked.</p><p>Your volunteer database was last reliably updated in 2023. Rotas are built in a spreadsheet whose logic she has described to you twice and you have not followed either time.</p><p>Your busiest period starts three weeks after she goes.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you get written down in ten weeks, and what will never be written down?</li><li>How do you introduce a replacement to ninety people who joined because of her?</li><li>Which volunteers could take on part of this, and how do you ask without exploiting them?</li><li>What do you stop doing during the busy period?</li><li>What do you want to be true when she comes back?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Knowledge about people, which is the hardest kind to hand over</li><li>Planned absence as a rehearsal you actually get to prepare for</li><li>The difference between a rota and a set of relationships</li><li>Not rebuilding the role around one person again</li><li>Making the return as considered as the departure</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">19 / 25</span>
+    <span>Warm up<span class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">People and community</span>
+    <span class="fits">Open source, Charity and NGO, Small team</span>
+  </div>
+  <h2>Building the bench</h2>
+  <p class="lede">Term limits worked for years. This time nobody wants the job.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your project has been running for five years with rotating leadership using an 'up and out' model. Every team lead role has a two-year term limit. After two years, people step down and someone else steps up.</p><p>This was working well until last month, when the current project lead's term is ending in three months, and there's no obvious successor. The previous leads have all moved on to other projects or life commitments. Current active contributors are either too new or have said they're not interested in leadership.</p><p>You have regular contributors, but no one who feels ready or willing to take on the lead role. The system that worked for years is suddenly showing its limits. Do you extend the current lead's term (undermining the up and out principle)? Do you leave the role empty? Do you shut down the project?</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>How do you develop potential leaders before you need them?</li><li>What does 'building the bench' actually look like in practice?</li><li>How do you make leadership roles appealing, not just burdens?</li><li>What support and structures help new leaders succeed?</li><li>How do you balance term limits with continuity?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Intentional leadership development</li><li>Making leadership sustainable and appealing</li><li>Onboarding and mentoring practices</li><li>Shared leadership models</li><li>When systems need adjustment</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">20 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">People and community</span>
+    <span class="fits">Open source, Charity and NGO, Company, Small team</span>
+  </div>
+  <h2>The burnout announcement</h2>
+  <p class="lede">Forty per cent of the codebase and most of the moderation walks out an hour before you read the message.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your second-most active contributor posts in your private team chat: 'I'm completely burnt out. I can't do this anymore. I'm stepping away immediately. I know I'm leaving you in the lurch with the release next week, but I can't continue. Sorry.'</p><p>This person has been maintaining about 40% of your codebase, mentoring new contributors, and handling most of the community moderation. The release they mentioned is already delayed and has commitments to three major organisations waiting for it.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>How do you respond to this person in the next hour?</li><li>Who picks up their responsibilities in the short term?</li><li>What do you do about the release deadline?</li><li>How do you prevent this happening to someone else?</li><li>What does your project need to change?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Emotional support for burned-out contributors</li><li>Distribution of responsibilities</li><li>Realistic capacity planning</li><li>Organisational culture and sustainability</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">21 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">People and community</span>
+    <span class="fits">Open source, Charity and NGO, Company, Small team</span>
+  </div>
+  <h2>The hovering founder</h2>
+  <p class="lede">You handed it over six months ago and you are still in every thread.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>You successfully transitioned leadership of your project to a new maintainer six months ago. You announced your step-back publicly, handed over all access, and explained the governance change to the community.</p><p>But you're still here. You read every issue. You comment on pull requests with 'suggestions.' When the new maintainer makes decisions you disagree with, you post in the community chat about 'concerns.' Community members still @ you directly with questions, bypassing the new maintainer. You tell yourself you're 'just helping' and 'providing institutional knowledge.'</p><p>The new maintainer hasn't said anything, but you've noticed they're less active lately. Some community members are confused about who's actually in charge.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>Have you actually let go, or just said you have?</li><li>What behaviours show you're still holding on?</li><li>How do you redirect community members to the new maintainer?</li><li>How do you give advice without undermining their authority?</li><li>What does truly stepping back actually look like?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>The difference between advisory and interfering</li><li>Community expectations and retraining them</li><li>Your own identity wrapped up in the project</li><li>When your input is helpful vs harmful</li><li>How to support without controlling</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">22 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">People and community</span>
+    <span class="fits">Company, Small team</span>
+  </div>
+  <h2>The relationships walk out</h2>
+  <p class="lede">Your top account lead is going to a competitor and taking eight years of trust with her.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your most effective account lead has resigned and is joining a direct competitor. Her non-solicitation clause covers approaching your customers for twelve months. It says nothing useful about them approaching her.</p><p>She manages your six largest accounts, worth a little over a third of recurring revenue. She has worked with some of these customers for eight years, across two employers. Her CRM notes are technically compliant and tell you almost nothing. The context lives in her head and in direct messages: who the real decision maker is, which stakeholder is hostile, what was promised verbally in 2023 that never made it into a contract.</p><p>Two of the six are up for renewal within four months. One has already emailed her personally to ask if the rumour is true.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>What do you ask her to do in her notice period, and what will you actually get?</li><li>How do you introduce a successor into an eight year relationship without it reading as a downgrade?</li><li>What do you do about the verbal commitment nobody can find?</li><li>What is your answer to the customer who emails her personally?</li><li>What has to change about how relationships are held here?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>CRM compliance vs the context that actually matters</li><li>Non-solicitation clauses as a weaker protection than they look</li><li>Multi-threading accounts before you need to</li><li>Commitments made outside the contract</li><li>Departures where the person is behaving reasonably and it still hurts</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">23 / 25</span>
+    <span>Standard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></span>
+    <span>10 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div><div class="sheet"><section class="card">
+  <div class="card-top">
+    <span class="cat">People and community</span>
+    <span class="fits">Open source, Charity and NGO, Company, Small team</span>
+  </div>
+  <h2>The cascade failure</h2>
+  <p class="lede">You planned for losing one person. You lost three in three weeks.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>Your project lead is taking a planned three-month sabbatical. You prepared for this - you have succession plans, documentation, distributed access.</p><p>Two weeks into their sabbatical, your infrastructure person's partner has a medical emergency and they need to step back indefinitely. One week after that, your community manager accepts a dream job and gives two weeks' notice.</p><p>You've suddenly lost your three most experienced people in three weeks. Your backup plans assumed losing one person, not three. The remaining team is overwhelmed and panicking.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>How do you triage responsibilities across remaining people?</li><li>What work do you stop doing entirely?</li><li>How do you recruit new help urgently?</li><li>What do you tell the community?</li><li>How do you keep remaining people from burning out?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Dealing with multiple simultaneous losses</li><li>Prioritisation under crisis</li><li>Rapid onboarding and trust building</li><li>Team sustainability under pressure</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">24 / 25</span>
+    <span>Hard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section><section class="card">
+  <div class="card-top">
+    <span class="cat">People and community</span>
+    <span class="fits">Open source, Charity and NGO, Small team</span>
+  </div>
+  <h2>The community resistance</h2>
+  <p class="lede">The handover went well and the community will not accept it.</p>
+  <div class="body">
+    <div class="col-a">
+      <h3>The situation</h3>
+      <p>You've successfully handed over project leadership to a new maintainer after a six-month transition. They're competent, committed, and the handoff went smoothly. You've publicly stepped back and are only responding when specifically asked.</p><p>But the community is pushing back. Long-time contributors are complaining in side channels that 'things have changed' and 'it's not the same anymore.' Users are tagging you in issues instead of the new maintainer. Some vocal community members are questioning decisions, saying 'the old leadership would never have done it this way.' A few people have forked the project, claiming the 'original vision' is lost.</p><p>Your successor messages you: 'I don't think they respect me. Should I just step down?'</p><p>The succession was technically successful, but socially it's failing.</p>
+    </div>
+    <div class="col-b">
+      <h3>Questions to work through</h3>
+      <ul><li>How do you support the new maintainer without undermining them by stepping back in?</li><li>What do you say to community members who keep coming to you?</li><li>How do you help the community accept that change is normal and healthy?</li><li>Is this a you problem, a them problem, or a successor problem?</li><li>When is community resistance legitimate feedback vs resistance to any change?</li></ul>
+      <div class="think">
+        <h3>Think about</h3>
+        <ul><li>Your role in legitimising the new leader</li><li>Community expectations and change management</li><li>The difference between supporting and rescuing</li><li>When to defend the successor's decisions vs let them handle it</li><li>How succession requires the community to change too</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-foot">
+    <span class="n">25 / 25</span>
+    <span>Hard<span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></span>
+    <span>12 minutes</span>
+    <span class="src">Beyond the Bus Factor · CC0 · beyondthebusfactor.org</span>
+  </div>
+</section></div>
+</body>
+</html>
