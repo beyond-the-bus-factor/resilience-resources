@@ -91,9 +91,13 @@ Write the situation in the second person, present tense, with enough specific de
 
 These are enforced by CI, so a pull request that breaks them will go red. They are worth knowing before you write rather than after.
 
-**Never use these words:** `quietly`, `genuinely`, `honest` and anything built from it. They are the author's own house rules and they apply to everything published here.
+**Never use these words:** `quietly`, `genuinely`, `honest` and anything built from it. They are the author's own house rules.
 
 **Never use an em dash.** Use a comma, a full stop, or rewrite the sentence.
+
+**These apply to everything, not only to prose.** A rule about how we write is not suspended inside a docstring, a code comment, a YAML label or a button. The checker reads Python, YAML, HTML, JavaScript and CSS as well as markdown.
+
+The rules live in [`.house-style`](.house-style), one per line, so you can read them without reading Python. If a line has to contain a banned word, a test that demonstrates the rule for example, add `house-style: allow` in a comment on that line and the checker will leave it alone.
 
 **Other conventions:**
 

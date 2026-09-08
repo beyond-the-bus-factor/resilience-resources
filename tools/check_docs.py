@@ -23,19 +23,52 @@ from scenarios import SECTORS, CATEGORIES, DIFFICULTY  # noqa: E402
 
 SKIP_DIRS = {".git", "node_modules", "_site", "__pycache__"}
 
-# House style. See the project's writing conventions.
-BANNED = {
-    "quietly": "house style",
-    "genuinely": "house style",
-    "honest": "house style, including honestly and honesty",
-    "—": "em dash",
-}
+# Everything we write prose into. House style is not suspended inside a
+# docstring, a comment or a button label.
+PROSE_SUFFIXES = (".md", ".py", ".yml", ".yaml", ".html", ".js", ".css", ".scss", ".txt", ".sh")
+
+# A line that has to contain a banned word says so for itself.
+ALLOW = "house-style: allow"
+
+RULES_FILE = ".house-style"
+
+
+def load_rules():
+    """Read the house style rules.
+
+    They live in a data file rather than here, so that a contributor can read
+    them without reading Python, and so that this file does not have to
+    contain the words it rejects.
+    """
+    path = os.path.join(ROOT, RULES_FILE)
+    rules = {}
+    if not os.path.exists(path):
+        PROBLEMS.append(f"{RULES_FILE} is missing, so no house style can be enforced")
+        return rules
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            text, _, why = line.partition("=")
+            if text.strip():
+                rules[text.strip()] = why.strip() or "house style"
+    return rules
 
 PROBLEMS = []
 
 
 def problem(path, detail):
     PROBLEMS.append(f"{os.path.relpath(path, ROOT)}: {detail}")
+
+
+def prose_files():
+    """Every file we write prose into, whatever its extension."""
+    for dirpath, dirnames, filenames in os.walk(ROOT):
+        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        for name in sorted(filenames):
+            if name.endswith(PROSE_SUFFIXES):
+                yield os.path.join(dirpath, name)
 
 
 def markdown_files():
@@ -179,7 +212,7 @@ def check_scenario_template():
     """The scenario issue template offers one option per value in the taxonomy.
 
     If a sector is added and the template is not updated, contributors are
-    quietly unable to say their scenario applies to it.
+    unable to say their scenario applies to it.
     """
     path = os.path.join(ROOT, ".github", "ISSUE_TEMPLATE", "share-scenario.yml")
     if not os.path.exists(path):
@@ -220,28 +253,41 @@ def check_style_is_documented():
     # Read raw: the banned words appear there in code spans, which is exactly
     # how a style guide should name them and how it avoids failing its own rule.
     text = read(path)
-    for word in BANNED:
-        name = "em dash" if word == "\u2014" else word
-        if word == "\u2014":
-            documented = "em dash" in text.lower()
+    for rule in load_rules():
+        if rule.isalpha():
+            documented = f"`{rule}`" in text
+            name = rule
         else:
-            documented = f"`{word}`" in text
+            documented = "em dash" in text.lower()
+            name = "em dash"
         if not documented:
             problem(path, f"CI rejects '{name}' but CONTRIBUTING.md does not say so. "
                           f"Document it, or stop enforcing it")
 
 
 def check_house_style():
-    for path in markdown_files():
-        text = strip_code(read(path))
+    rules = load_rules()
+    for path in prose_files():
+        # The rules file names the words it bans, so exempt it explicitly
+        # rather than relying on it happening to have no extension.
+        if os.path.relpath(path, ROOT) == RULES_FILE:
+            continue
+        text = read(path)
+        # Code fences in markdown are quoted material rather than our prose.
+        # Everywhere else, every line counts.
+        if path.endswith(".md"):
+            text = strip_code(text)
         for n, line in enumerate(text.split("\n"), 1):
+            if ALLOW in line:
+                continue
             low = line.lower()
-            for word, why in BANNED.items():
-                if word == "—":
-                    if word in line:
-                        problem(path, f"line {n}: em dash ({why})")
-                elif re.search(rf"\b{word}", low):
-                    problem(path, f"line {n}: '{word}' ({why})")
+            for text_to_find, why in rules.items():
+                if text_to_find.isalpha():
+                    hit = re.search(rf"\b{re.escape(text_to_find)}", low)
+                else:
+                    hit = text_to_find in line
+                if hit:
+                    problem(path, f"line {n}: '{text_to_find}' ({why})")
 
 
 def check_counts():
@@ -283,10 +329,10 @@ def main():
     if PROBLEMS:
         for p in PROBLEMS:
             print(f"  {p}")
-        print(f"\n{len(PROBLEMS)} problems")
+        print(f"\n{len(PROBLEMS)} problem" + ("" if len(PROBLEMS) == 1 else "s"))
         return 1
-    print(f"All documentation checks passed across "
-          f"{len(list(markdown_files()))} markdown files.")
+    print(f"All checks passed across {len(list(markdown_files()))} markdown files "
+          f"and {len(list(prose_files()))} files in total.")
     return 0
 
 

@@ -35,6 +35,8 @@ GOOD_OVERLAYS = {
 def build(tmp, files, overlays=None):
     """Write a fixture tree: a correct set of overlays plus whatever is given."""
     overlays = GOOD_OVERLAYS if overlays is None else overlays
+    shutil.copy(os.path.join(check_docs.ROOT, check_docs.RULES_FILE),
+                os.path.join(tmp, check_docs.RULES_FILE))
     os.makedirs(os.path.join(tmp, "resources", "sectors"), exist_ok=True)
     for sector, body in overlays.items():
         name = {"open-source": "open-source", "charity": "charity-ngo",
@@ -48,12 +50,14 @@ def build(tmp, files, overlays=None):
             fh.write(body)
 
 
-def run(files, overlays=None):
-    """Run every check against a fixture tree and return what it said."""
+def run(files, overlays=None, drop_rules=False):
+    """Run the content checks against a fixture tree and return what it said."""
     tmp = tempfile.mkdtemp()
     real_root = check_docs.ROOT
     try:
         build(tmp, files, overlays)
+        if drop_rules:
+            os.remove(os.path.join(tmp, check_docs.RULES_FILE))
         check_docs.ROOT = tmp
         check_docs.PROBLEMS.clear()
         for _, fn in check_docs.CHECKS:
@@ -73,7 +77,8 @@ def catches_in_repo(label, mutate, check, needle):
     real_root = check_docs.ROOT
     try:
         os.makedirs(os.path.join(tmp, ".github", "ISSUE_TEMPLATE"))
-        for rel in ("CONTRIBUTING.md", ".github/ISSUE_TEMPLATE/share-scenario.yml"):
+        for rel in (check_docs.RULES_FILE, "CONTRIBUTING.md",
+                    ".github/ISSUE_TEMPLATE/share-scenario.yml"):
             src = os.path.join(real_root, rel)
             if os.path.exists(src):
                 shutil.copy(src, os.path.join(tmp, rel))
@@ -128,11 +133,11 @@ def main():
             "does not exist")
 
     catches("a banned word",
-            {"a.md": "This is quietly a problem.\n"},
-            "'quietly'")
+            {"a.md": "This is quietly a problem.\n"},  # house-style: allow
+            "'quietly'")  # house-style: allow
 
     catches("an em dash",
-            {"a.md": "This one uses an em dash — like that.\n"},
+            {"a.md": "This one uses an em dash — like that.\n"},  # house-style: allow
             "em dash")
 
     catches("a scenario count that is out of date",
@@ -142,6 +147,30 @@ def main():
     catches("a numeric scenario count that is out of date",
             {"a.md": "All 15 scenarios are listed.\n"},
             "but there are")
+
+    print("House style applies outside markdown")
+
+    for label, rel, body, should_complain in [
+        ("a Python docstring", "tools/x.py", 'def f():\n    """This is quietl' + 'y wrong."""\n', True),
+        ("a Python comment", "tools/x.py", "# an em dash \u2014 in a comment\n", True),
+        ("a YAML label", ".github/ISSUE_TEMPLATE/x.yml", "  - label: Be hone" + "st about it\n", True),
+        ("a JavaScript comment", "assets/x.js", "// this is genuinel" + "y a problem\n", True),
+        ("an HTML button label", "_includes/x.html", "<button>Be hone" + "st</button>\n", True),
+        ("a line marked house-style: allow", "tools/x.py", "s = 'quietl' + 'y'  # house-style: allow\n", False),
+    ]:
+        found = run({rel: body})
+        hit = any("line" in p for p in found)
+        ok = hit if should_complain else not hit
+        print(("  ok   " if ok else "  FAIL ") + label)
+        if not ok:
+            FAILURES.append(label)
+            print(f"         got: {found or 'nothing'}")
+
+    missing_rules = run({"a.md": "fine\n"}, drop_rules=True)
+    print(("  ok   " if any("house style can be enforced" in p for p in missing_rules) else "  FAIL ") +
+          "the rules file going missing is reported, not ignored")
+    if not any("house style can be enforced" in p for p in missing_rules):
+        FAILURES.append("missing rules file")
 
     print("Reports accurately")
 
@@ -185,14 +214,14 @@ def main():
     nofm["charity"] = "# Just a heading, no front matter\n"
     catches("an overlay with no front matter", {}, "missing front matter", overlays=nofm)
 
-    print("Keeps the docs honest about the rules")
+    print("Keeps the docs in step with the rules")
 
     def undocument(tmp):
         p = os.path.join(tmp, "CONTRIBUTING.md")
         with open(p, encoding="utf-8") as fh:
             text = fh.read()
         with open(p, "w", encoding="utf-8") as fh:
-            fh.write(text.replace("`quietly`", "a word we do not use"))
+            fh.write(text.replace("`quietly`", "a word we do not use"))  # house-style: allow
 
     catches_in_repo("a banned word CONTRIBUTING no longer documents",
                     undocument, check_docs.check_style_is_documented, "does not say so")
