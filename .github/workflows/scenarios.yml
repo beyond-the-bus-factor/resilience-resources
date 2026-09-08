@@ -16,6 +16,10 @@ jobs:
           python-version: '3.12'
       - name: Check the scenario sources
         run: python3 tools/test_scenarios.py
+      - name: Check that the documentation checker works
+        run: python3 tools/test_check_docs.py
+      - name: Check the documentation
+        run: python3 tools/check_docs.py
       - name: Confirm the generated files are up to date
         run: |
           python3 tools/build-deck.py

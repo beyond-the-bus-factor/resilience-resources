@@ -1,251 +1,274 @@
 # Bus factor audit
 
-Your bus factor is the number of people who would need to disappear before your project collapses. For most projects, that number is uncomfortably small.
+Your bus factor is the number of people who would have to disappear before the thing you run stops working. For most organisations that number is uncomfortably small, and everybody already knows whose name it is.
 
-This audit helps you identify single points of failure across three dimensions: technical systems, governance structures, and community relationships.
+This audit finds where you are exposed, across three dimensions: the systems and operations that keep things running, the money, legal and governance that keep you allowed to run them, and the people who hold everything together.
+
+It is written to work whatever you run. Where a row does not apply, skip it. Where your sector has risks this cannot know about, add them from your overlay:
+
+- [For open source projects](sectors/open-source.md)
+- [For charities and NGOs](sectors/charity-ngo.md)
+- [For companies](sectors/company.md)
+- [For small teams and collectives](sectors/small-team.md)
+
+Each overlay translates the vocabulary, adds the rows specific to that setting, and names the failure that sector usually turns out to have.
 
 ## How to use this audit
 
-Work through each section honestly. For every area that is relevant to your situation, ask:
+Work through each section properly. For every area relevant to you, ask:
 
-1. **How many people** can handle this independently?
-2. **How long** would it take someone else to figure it out?
-3. **What would break** if those people disappeared tomorrow?
+1. **How many people** can handle this on their own?
+2. **How long** would it take somebody else to work it out?
+3. **What would break** if those people were gone tomorrow?
 
-Don't only count who *could* theoretically do something. Count who *actually knows how* and has the access to do it right now.
+Do not count who *could* theoretically do something. Count who *actually knows how* and has the access to do it this afternoon. Those are different numbers, and the gap between them is most of your risk.
+
+Doing this alone will give you the wrong answer. You will overestimate what is written down and underestimate what only you know. Do it with the people who would have to pick things up.
 
 ## Scoring your risk
 
-For each area, assign a risk level:
+For each area, assign a level:
 
-**🔴 Critical (Bus factor 1):** Only one person can handle this. If they leave, we're in crisis.
+**🔴 Critical (bus factor 1):** One person. If they go, you are in crisis.
 
-**🟡 Vulnerable (Bus factor 2):** Two people can handle this, but it's risky. Losing one creates a crisis.
+**🟡 Vulnerable (bus factor 2):** Two people. Losing one puts you back to critical.
 
-**🟢 Resilient (Bus factor 3+):** Three or more people can handle this independently. We can survive losing someone.
+**🟢 Resilient (bus factor 3+):** Three or more can each do it independently. You can absorb a loss.
 
-## Technical systems
+Score what is true today, not what is meant to be true. A second person who was shown once, eighteen months ago, and has not done it since, is not a second person.
 
-### Code and architecture
+## Systems and operations
 
-| Area | Who knows it? | Bus factor | Risk level |
-|------|---------------|------------|------------|
-| Core codebase architecture | | | |
-| Critical algorithms or complex logic | | | |
-| Database schema and migrations | | | |
-| API design and integration points | | | |
-| Performance optimisation | | | |
-| Security implementations | | | |
+### Doing the work
 
-**Questions to ask:**
-- Could someone else explain why we built it this way?
-- Is the 'why' documented, or have you only covered the 'what'?
-- Are there parts of the code only one person has touched in the last year?
-
-#### Code analysis tools
-
-There have been several attempts to develop tooling to calculate a bus factor score based on Git history.
-
-- GitHub repos tagged with [bus-factor](https://github.com/topics/bus-factor)
-- CHAOSS project's ['contributor absence factor'](https://chaoss.community/?p=3944)
-
-### Infrastructure and deployment
+The things that have to keep happening for you to be delivering at all.
 
 | Area | Who can do it? | Bus factor | Risk level |
 |------|----------------|------------|------------|
-| Deploy to production | | | |
-| Roll back a broken deployment | | | |
-| Provision new infrastructure | | | |
-| Access production databases | | | |
-| Manage DNS and domains | | | |
-| Renew SSL certificates | | | |
-| Configure monitoring and alerting | | | |
-| Respond to security incidents | | | |
+| The core work itself, end to end | | | |
+| The specialist part only some people can do | | | |
+| Publishing changes to the live service | | | |
+| Undoing a change that went wrong | | | |
+| Whatever runs on a schedule and would be missed | | | |
+| Knowing when something has broken, and who finds out | | | |
+| Restoring from backup, having actually tried it | | | |
 
 **Questions to ask:**
-- Could we deploy in an emergency with our lead person unavailable?
-- Is the deployment process documented well enough for someone to follow it?
-- Do we have the credentials we'd need if our infrastructure person disappeared?
-- Do we know what all the domains and sub-domains we own are used for?
+- Could somebody else do a normal week's work without asking you anything?
+- What runs on a schedule that nobody would notice had stopped until it mattered?
+- If something broke at 2am, who would find out, and how?
+- When did anyone last restore from a backup rather than assume it works?
 
-### Development operations
+### Access and credentials
 
-| Area | Who manages it? | Bus factor | Risk level |
-|------|-----------------|------------|------------|
-| CI/CD pipeline configuration | | | |
-| Release process and versioning | | | |
-| Package management and dependencies | | | |
-| Code signing and release artefacts | | | |
-| Repository administration | | | |
-| Branch protection and policies | | | |
-| Third-party integrations | | | |
+Access is the one that turns a difficult month into an impossible one, and it is the cheapest to fix.
+
+| Area | Who has it? | Bus factor | Risk level |
+|------|-------------|------------|------------|
+| The password manager, or wherever credentials live | | | |
+| Administrator rights on your main systems | | | |
+| The domain registrar | | | |
+| Email and calendar administration | | | |
+| Payment and banking access | | | |
+| Anything tied to one person's phone or authenticator | | | |
+| Accounts registered to a personal address rather than a shared one | | | |
+| Certificates, licences and anything else with a renewal date | | | |
+| Connections to other people's systems, and who set them up | | | |
 
 **Questions to ask:**
-- Is our release process documented enough for someone new to follow?
-- Do we have backup access to all the services we depend on?
-- What would happen if our CI/CD suddenly stopped working?
-- Are we using tokens tied to an individual in our workflows, rather than a bot account?
-- Are there repositories or resources where only a single person has access?
+- If one person lost their phone tomorrow, what could nobody get into?
+- Which accounts are in an individual's name rather than the organisation's?
+- Who is named on the paperwork, and is that still the right person?
+- What expires, when, and who gets the reminder?
 
-## Governance and decision-making
+### Data and records
 
-### Authority and process
+| Area | Where is it? | Who can reach it? | Risk level |
+|------|--------------|-------------------|------------|
+| Your main working records | | | |
+| Financial records and history | | | |
+| Contracts and agreements | | | |
+| Anything held on a personal device or personal account | | | |
+| Backups, and evidence they work | | | |
+
+**Questions to ask:**
+- What lives on somebody's laptop and nowhere else?
+- What would you be unable to reconstruct if a personal account were closed?
+
+## Money, legal and governance
+
+### Authority and decisions
 
 | Area | Who decides? | Bus factor | Risk level |
 |------|--------------|------------|------------|
-| Project roadmap and priorities | | | |
-| Technical architecture decisions | | | |
-| Community policy and guidelines | | | |
-| Financial decisions and budget | | | |
+| Direction and priorities | | | |
+| Spending, and above what amount | | | |
 | Legal matters and contracts | | | |
-| Partnership and sponsorship agreements | | | |
-| Hiring or inviting new contributors | | | |
+| Bringing in new people | | | |
+| Anything urgent, out of hours | | | |
 
 **Questions to ask:**
-- Are our decision-making processes written down?
-- Could we make an urgent decision if our lead is unavailable?
-- Do people know what decisions they can make without asking permission?
+- Who can commit you to something, and does everyone agree on that answer?
+- If your usual decision maker is unreachable for a fortnight, what stalls?
+- Is the authority written down, or is it just how it has always worked?
+
+### Money
+
+| Area | Who handles it? | Bus factor | Risk level |
+|------|-----------------|------------|------------|
+| Paying people | | | |
+| Paying suppliers and bills | | | |
+| Getting money in | | | |
+| Bank mandates and authorised signatories | | | |
+| The relationship with your accountant or bookkeeper | | | |
+| Knowing what you are actually committed to | | | |
+
+**Questions to ask:**
+- Could payroll run this month without one specific person?
+- When was the bank mandate last reviewed, and does it name anybody who has left?
+- Who knows about the commitments that are not written in a contract?
+
+### Legal, regulatory and compliance
+
+| Area | Who is responsible? | Bus factor | Risk level |
+|------|---------------------|------------|------------|
+| Statutory filings and deadlines | | | |
+| Roles a regulator requires you to name | | | |
+| Insurance | | | |
+| Data protection obligations | | | |
+| Intellectual property, trademarks and licences | | | |
+| Who owns what, and can you prove it | | | |
+
+**Questions to ask:**
+- Which obligations carry a deadline that does not move for an emergency?
+- Are any required roles currently held by one person with no deputy?
+- Would you be able to demonstrate ownership of your domain, your name and your work?
 
 ### Documentation and knowledge
 
 | Area | Where is it? | How current? | Risk level |
 |------|--------------|--------------|------------|
-| Project vision and strategy | | | |
-| Governance structure and roles | | | |
-| Decision-making processes | | | |
-| Historical context for major decisions | | | |
-| Ongoing discussions and open questions | | | |
-| Financial records and contracts | | | |
-| Legal entity structure (if applicable) | | | |
+| How the work actually gets done | | | |
+| How decisions actually get made | | | |
+| Why things were done the way they were | | | |
+| Open questions and things in flight | | | |
+| The history somebody would need to avoid repeating a mistake | | | |
 
 **Questions to ask:**
-- If our founder left tomorrow, could someone else articulate the project vision?
-- Do we document *why* we made decisions, or just *what* we decided?
-- Where do we keep the context that lives in people's heads?
+- Is the 'why' written down anywhere, or only the 'what'?
+- What would a competent newcomer still get wrong after reading everything you have?
 
 ### External relationships
 
-| Relationship | Who manages it? | Bus factor | Risk level |
-|--------------|-----------------|------------|------------|
-| Major sponsors and funders | | | |
-| Corporate partners | | | |
-| Foundation relationships | | | |
-| Legal and financial advisors | | | |
-| Media and PR contacts | | | |
-| Conference and event organisers | | | |
-| Other project collaborations | | | |
+Relationships are the risk people forget, because they do not feel like assets until they are gone.
+
+| Relationship | Who holds it? | Bus factor | Risk level |
+|--------------|---------------|------------|------------|
+| Whoever funds or pays you | | | |
+| Key suppliers and partners | | | |
+| Professional advisers | | | |
+| Regulators and officials | | | |
+| Press and public contacts | | | |
+| Peers in your field who would help in a crisis | | | |
 
 **Questions to ask:**
-- Would our partners know who to contact if our lead disappeared?
-- Are these relationships documented, or just in one person's email?
-- Could someone else pick up these relationships without awkwardness?
+- If this person left, would the relationship survive, or does it leave with them?
+- Has anybody else ever met these people?
+- Which of these should sit with the organisation rather than an individual?
 
-## Community and people
+## People
 
-### Community leadership
+### Leadership and the work nobody counts
 
 | Role | Who does it? | Bus factor | Risk level |
 |------|--------------|------------|------------|
-| Community management and moderation | | | |
-| Onboarding new contributors | | | |
-| Code review and mentoring | | | |
-| Code of conduct enforcement | | | |
-| Conflict resolution | | | |
-| Communication and announcements | | | |
-| Social media and public presence | | | |
+| Setting direction | | | |
+| Bringing new people in and settling them | | | |
+| Reviewing and improving other people's work | | | |
+| Handling conflict | | | |
+| Upholding standards of behaviour | | | |
+| Noticing when somebody is struggling | | | |
+| Speaking for you in public | | | |
 
 **Questions to ask:**
-- Could our community function if our main moderator left?
-- Who would handle a code of conduct report if the usual person is unavailable?
-- Is there a list of who our active, trusted contributors are?
+- Which of these has no name against it, and happens anyway because somebody absorbs it without being asked?
+- Who would notice if the pastoral work stopped?
 
-### Contributor relationships
+### Knowledge about people
 
-| Area | Who knows them? | Bus factor | Risk level |
-|------|-----------------|------------|------------|
-| Top 5 regular contributors | | | |
-| Subject matter experts | | | |
-| People interested in leadership roles | | | |
-| Contributors who've stepped back | | | |
-| Difficult personalities and conflicts | | | |
-| Up-and-coming contributors to nurture | | | |
+| Area | Who knows it? | Bus factor | Risk level |
+|------|---------------|------------|------------|
+| Who is reliable, and who needs support | | | |
+| Who could step up, given a year | | | |
+| History between people that shapes how things go | | | |
+| Who has stepped back, and why | | | |
+| Who is close to leaving | | | |
 
 **Questions to ask:**
-- If our community lead left, who would know the context of ongoing relationships?
-- Are contributor relationships documented anywhere?
-- Do we know who to reach out to if we need help urgently?
+- Is any of this written anywhere, and should it be?
+- Who else could answer 'who should we ask to do this?'
 
 ### Communication channels
 
-| Channel | Who administers? | Bus factor | Risk level |
-|---------|------------------|------------|------------|
-| Mailing lists | | | |
-| Chat platforms (Slack/Discord/etc) | | | |
-| Forums or discussion boards | | | |
+| Channel | Who administers it? | Bus factor | Risk level |
+|---------|---------------------|------------|------------|
+| Email lists and announcements | | | |
+| Chat and messaging platforms | | | |
+| Forums or discussion spaces | | | |
 | Social media accounts | | | |
-| Project website and blog | | | |
-| Documentation sites | | | |
-| Issue tracker and project boards | | | |
+| Website and any blog | | | |
+| Wherever you track work | | | |
 
 **Questions to ask:**
-- Could we post an urgent announcement if our usual person is unavailable?
-- Do we have admin access distributed across multiple people?
-- What would happen if we lost access to our primary communication channel?
+- Could you post an urgent announcement today if the usual person were unreachable?
+- Is administrator access spread across more than one person on each channel?
+- What if the channel itself disappeared, and who has the list of who to contact?
 
-## What your audit tells you
+## Reading your results
 
-### Count your critical risks
+### Count the red
 
-How many areas are marked critical (red)? These are your immediate emergencies. If you have more than five critical areas, your project is dangerously fragile.
+How many areas came out critical? More than five and you are fragile in a way that a single ordinary event, one resignation, one illness, will expose.
 
-### Look for patterns
+### Look for the pattern
 
-- **Knowledge concentration:** Is everything technical held by one person? Everything governance by another?
-- **Access concentration:** Does one person hold all the credentials and admin rights?
-- **Relationship concentration:** Are all external relationships owned by one person?
+The shape usually matters more than the count.
 
-### Identify your 'key person risk'
+- **Knowledge concentration.** Is everything operational held by one person and everything governance by another?
+- **Access concentration.** Does one person hold most of the credentials and administrator rights?
+- **Relationship concentration.** Do all the outside relationships run through the same inbox?
+- **Deadline exposure.** Are your reds attached to dates that will not move for an emergency?
 
-Is there one person whose departure would create multiple crises? That person is your bus factor problem. They may not realise how dependent the project is on them.
+### Name the person
 
-## What to do with this information
+Is there one person whose departure would cause several crises at once? That is your bus factor, and it is a person rather than a list.
 
-Don't panic. Every project has vulnerabilities. The goal isn't perfection - it's knowing where you're fragile so you can plan accordingly.
+They may not know. People carrying an organisation rarely notice they are doing it, and it is worth telling them plainly rather than leaving it in a spreadsheet.
 
-### Immediate actions (next 30 days)
+## What to do next
 
-1. **Address one critical risk** - Pick your scariest red item and get one more person trained up
-2. **Document one area** - Take something that lives in one person's head and write it down
-3. **Share one set of credentials** - Use a password manager to give access to at least one more trusted person, even if it's a lawyer it's better than only being in the hands of a single person!
+Do not try to fix it all. Every organisation has vulnerabilities, and the point is knowing where you are fragile rather than being invulnerable.
 
-### Short-term actions (next 90 days)
+### In the next thirty days
 
-1. **Create a succession plan** - For your highest-risk person, draft what would happen if they left
-2. **Cross-train deliberately** - Pair people up to share knowledge in your most vulnerable areas
-3. **Document your governance** - Write down how decisions actually get made
+1. **Fix one red.** The scariest one. Get a second person trained, actually doing it rather than watching.
+2. **Write down one thing** that lives in one person's head.
+3. **Share one set of credentials** into a password manager that somebody else can reach.
 
-### Long-term systemic changes
+### In the next ninety days
 
-1. **Build rotation practices** - Make sure no one stays the sole expert in critical areas
-2. **Create forcing functions** - Require two reviewers, multiple deployers, shared ownership
-3. **Audit regularly** - Revisit this every six months as your project evolves
+1. **Draft what would happen** if your highest-risk person left, using the [succession planning guide](succession-planning-guide.md).
+2. **Cross-train on purpose.** Pair people on your most vulnerable areas, with the second person doing the work.
+3. **Write down how decisions really get made**, which is usually different from the constitution.
 
-## Questions for reflection
+### Longer term
 
-- What surprised you about your vulnerabilities?
-- Which risks scare you the most?
-- If you could only fix three things, which would they be?
-- Who needs to see this audit besides you?
+1. **Rotate.** Nobody should stay the only expert in anything critical.
+2. **Build in forcing functions.** Two signatories, two reviewers, two people on the rota. Structure beats intention.
+3. **Repeat this audit** every six months. It is a rhythm, not an event, and the second time takes an hour.
 
-## Using this audit with your team
+## Where to go from here
 
-This works better as a collaborative exercise:
-
-1. **Do it individually first** - Everyone fills out their own view of the bus factor
-2. **Compare notes** - You'll discover gaps nobody realised existed
-3. **Prioritise together** - Decide as a team which risks to address first
-4. **Review quarterly** - Bus factors change as people's involvement shifts
-
----
-
-*This audit is a snapshot, not a solution. Use it to start difficult conversations about sustainability.*
+- [Legacy checklist](legacy-checklist.md) for the immediate risks this turned up
+- [Succession planning guide](succession-planning-guide.md) for the longer piece of work
+- [Scenario cards](scenario-cards.md) to test your answers with other people in the room

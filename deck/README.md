@@ -50,12 +50,12 @@ Runs in CI on every pull request, along with a check that the generated files in
 
 Copy any file in `resources/scenarios/` and edit it. The front matter needs:
 
-- `title`, `summary` — non-empty. The summary is the italic line on the card, one sentence
-- `slug` — lowercase letters, digits and single hyphens, and it has to match the filename. It becomes an anchor id and a fragment link, so anything else breaks the generated links
-- `category` — `operational`, `governance` or `people`
-- `sectors` — any of `open-source`, `charity`, `corporate`, `small-team`
-- `difficulty` — 1, 2 or 3, how hard the discussion is rather than how bad the crisis is
-- `minutes` — suggested discussion time, a positive whole number
+- `title` and `summary`, both non-empty. The summary is the italic line on the card, one sentence
+- `slug`, lowercase letters, digits and single hyphens, and it has to match the filename. It becomes an anchor id and a fragment link, so anything else breaks the generated links
+- `category`, one of `operational`, `governance` or `people`
+- `sectors`, any of `open-source`, `charity`, `corporate`, `small-team`
+- `difficulty`, 1, 2 or 3, how hard the discussion is rather than how bad the crisis is
+- `minutes`, the suggested discussion time, a positive whole number
 
 The body needs `## The situation`, `## Questions to work through` and `## Think about`. The build fails loudly if any of that is missing or misspelled.
 

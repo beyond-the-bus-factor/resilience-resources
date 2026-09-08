@@ -15,7 +15,16 @@ These resources were created collaboratively by people who have actually navigat
 #### Audits
 
 - [Bus factor audit](resources/bus-factor-audit.md)
-A framework for identifying single points of failure across technical systems, governance structures, and community roles.
+A framework for finding single points of failure across the systems and operations that keep you running, the money, legal and governance that keep you allowed to run them, and the people holding it together. Written to work whatever you run.
+
+#### Sector overlays
+
+The audit is deliberately neutral. Each overlay translates the vocabulary, adds the rows the neutral version cannot know about, and names the failure that setting reliably turns out to have, with a worked example.
+
+- [For open source projects](resources/sectors/open-source.md), for release keys, project ownership, and why losing a maintainer loses the ability to ship rather than the code
+- [For charities and NGOs](resources/sectors/charity-ngo.md), for trustees, funders, and the roles a regulator requires you to name
+- [For companies](resources/sectors/company.md), for the key person risk your business continuity plan does not cover
+- [For small teams and collectives](resources/sectors/small-team.md), for where everything ended up in one person's name by accident
 
 #### Practical guides
 
@@ -55,7 +64,7 @@ These resources apply to any project or organisation with key person dependencie
 
 ## Using these resources
 
-Start with the **bus factor audit** to understand your vulnerabilities. Then work through the **legacy checklist** to address immediate risks. Use the **succession planning guide** to build longer-term resilience.
+Start with the **bus factor audit** to find where you are exposed, alongside the **sector overlay** for whatever you run. Then work through the **legacy checklist** for the immediate risks it turns up. Use the **succession planning guide** for the longer piece of work, and the **scenario cards** to test your answers with other people in the room.
 
 All resources are templates. Adapt them to your context. They get better when you make them your own.
 
@@ -64,6 +73,16 @@ All resources are templates. Adapt them to your context. They get better when yo
 These resources improve when more people share their experience. If you've navigated a difficult transition, your hard-won lessons matter.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to help.
+
+### Checks
+
+```
+python3 tools/test_scenarios.py    # the scenario loader
+python3 tools/test_check_docs.py   # that the documentation checker works
+python3 tools/check_docs.py        # the documentation itself
+```
+
+`check_docs.py` verifies that every relative link and anchor resolves, that tables are well formed, that there is exactly one overlay per sector in the taxonomy, that links to scenarios name real ones, and that counts stated in prose match reality. All three run in CI.
 
 ### Adding a scenario
 

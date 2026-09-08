@@ -6,6 +6,8 @@ This checklist helps you prepare for the scenario nobody wants to think about: y
 
 If you're the person holding critical access or knowledge, this is your responsibility to prepare.
 
+It applies wherever you hold that access: an open source project, a charity, a company, a small group. Where a section names something you do not have, skip it. For the items this cannot know about, add them from your overlay: [open source](sectors/open-source.md), [charities and NGOs](sectors/charity-ngo.md), [companies](sectors/company.md), [small teams](sectors/small-team.md).
+
 ## How to use this checklist
 
 Work through each section. For every item, you need:
@@ -77,7 +79,7 @@ Don't only tick boxes. Actually set these things up and test that others _can_ a
 Draft template messages for different scenarios:
 
 **Template: Temporary absence**
-(Name) is currently unable to participate in (project) due to (vague but honest reason).
+(Name) is currently unable to participate in (project) due to (vague but truthful reason).
 
 During this time, (person) will be handling (responsibility) and (person) will be handling (responsibility).
 
@@ -112,23 +114,24 @@ List of all places that need notification, in priority order:
 - [ ] Funding organisations
 - [ ] Parent organisations or foundations
 
-## Technical continuity
+## Operational continuity
 
-### Deployment and releases
+### Keeping the work running
 
-- [ ] Deployment process fully documented
-- [ ] At least two other people have practised deploying
-- [ ] Release signing keys backed up securely
-- [ ] CI/CD credentials accessible to successors
-- [ ] Emergency rollback procedures documented
+- [ ] The process for publishing or delivering changes is fully documented
+- [ ] At least two other people have practised doing it, rather than reading about it
+- [ ] Any signing keys or certificates are backed up somewhere a successor can reach
+- [ ] Credentials for the systems that run automatically are accessible to successors
+- [ ] The procedure for undoing a bad change is written down
+- [ ] Anything that runs on a schedule is listed, with what happens if it stops
 
 ### Critical knowledge
 
-- [ ] Architecture decisions documented (ADRs or equivalent)
-- [ ] 'Why we built it this way' context captured
-- [ ] Known issues and workarounds documented
-- [ ] Relationships with key contributors explained
-- [ ] Ongoing conversations and decisions-in-progress documented
+- [ ] Significant decisions written down, with the reasoning
+- [ ] The 'why we do it this way' context captured, not only the 'how'
+- [ ] Known problems and the workarounds for them documented
+- [ ] Relationships with the people you rely on explained, including who is difficult and why
+- [ ] Conversations and decisions still in progress written down somewhere findable
 
 ### Ongoing operations
 
@@ -151,7 +154,7 @@ List of all places that need notification, in priority order:
 ### Community leadership
 
 - [ ] List of key community members and their roles
-- [ ] Relationships with major contributors documented
+- [ ] Relationships with the people you depend on documented
 - [ ] Ongoing community conflicts or concerns documented
 - [ ] Community code of conduct enforcement - who handles reports
 - [ ] Succession plan for community management roles
@@ -196,7 +199,7 @@ This checklist is the framework. You need a private core document with the actua
 Don't fill this out and forget it. Test it:
 
 - [ ] Take a week completely off and unreachable - does everything keep running?
-- [ ] Have someone else deploy a release using only your documentation
+- [ ] Have somebody else do the thing only you do, using only your documentation, while you say nothing
 - [ ] Ask your trusted contacts to access your core document - can they actually do it?
 - [ ] Review and update this checklist every six months
 - [ ] When things change (new services, new people), update immediately
@@ -205,16 +208,16 @@ Don't fill this out and forget it. Test it:
 
 This checklist won't make your absence less challenging. It won't eliminate the grief or the disruption. It won't replace the knowledge in your head or the relationships you've built.
 
-What it will do is give your project a fighting chance to survive and your successors a place to start.
+What it will do is give the thing you have built a chance of surviving, and your successors a place to start.
 
 That's what you owe to the people who depend on your work.
 
 ## Questions to reflect on
 
 - If you died tonight, would anyone know how to access your password manager?
-- Could your project make an emergency deployment without you?
-- Does anyone else know why you made the technical decisions you made?
-- Would your community know who to turn to if you disappeared?
+- Could an urgent change be made and published without you?
+- Does anyone else know why the significant decisions were made the way they were?
+- Would the people who depend on you know who to turn to?
 
 If the answer to any of these is "no," start there.
 
