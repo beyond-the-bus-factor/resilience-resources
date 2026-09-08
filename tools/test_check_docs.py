@@ -22,6 +22,10 @@ import scenarios  # noqa: E402
 
 FAILURES = []
 
+# Checks that read a specific file in the repository rather than walking a tree.
+# catches_in_repo exercises these; the fixture based runner skips them.
+REPO_FILE_CHECKS = (check_docs.check_style_is_documented, check_docs.check_scenario_template)
+
 GOOD_OVERLAYS = {
     sector: f'---\nsector: {sector}\ntitle: "T"\nsummary: "S"\n---\n\n# Heading here\n'
     for sector in scenarios.SECTORS
@@ -53,8 +57,36 @@ def run(files, overlays=None):
         check_docs.ROOT = tmp
         check_docs.PROBLEMS.clear()
         for _, fn in check_docs.CHECKS:
+            if fn in REPO_FILE_CHECKS:
+                continue      # these read named repository files, not a fixture tree
             fn()
         return list(check_docs.PROBLEMS)
+    finally:
+        check_docs.ROOT = real_root
+        check_docs.PROBLEMS.clear()
+        shutil.rmtree(tmp)
+
+
+def catches_in_repo(label, mutate, check, needle):
+    """Copy the real repo files a check reads, break one, confirm it complains."""
+    tmp = tempfile.mkdtemp()
+    real_root = check_docs.ROOT
+    try:
+        os.makedirs(os.path.join(tmp, ".github", "ISSUE_TEMPLATE"))
+        for rel in ("CONTRIBUTING.md", ".github/ISSUE_TEMPLATE/share-scenario.yml"):
+            src = os.path.join(real_root, rel)
+            if os.path.exists(src):
+                shutil.copy(src, os.path.join(tmp, rel))
+        mutate(tmp)
+        check_docs.ROOT = tmp
+        check_docs.PROBLEMS.clear()
+        check()
+        found = list(check_docs.PROBLEMS)
+        hit = any(needle in p for p in found)
+        print(("  ok   " if hit else "  FAIL ") + label)
+        if not hit:
+            FAILURES.append(label)
+            print(f"         expected something containing {needle!r}, got: {found or 'nothing'}")
     finally:
         check_docs.ROOT = real_root
         check_docs.PROBLEMS.clear()
@@ -152,6 +184,36 @@ def main():
     nofm = dict(GOOD_OVERLAYS)
     nofm["charity"] = "# Just a heading, no front matter\n"
     catches("an overlay with no front matter", {}, "missing front matter", overlays=nofm)
+
+    print("Keeps the docs honest about the rules")
+
+    def undocument(tmp):
+        p = os.path.join(tmp, "CONTRIBUTING.md")
+        with open(p, encoding="utf-8") as fh:
+            text = fh.read()
+        with open(p, "w", encoding="utf-8") as fh:
+            fh.write(text.replace("`quietly`", "a word we do not use"))
+
+    catches_in_repo("a banned word CONTRIBUTING no longer documents",
+                    undocument, check_docs.check_style_is_documented, "does not say so")
+
+    catches_in_repo("CONTRIBUTING missing entirely",
+                    lambda tmp: os.remove(os.path.join(tmp, "CONTRIBUTING.md")),
+                    check_docs.check_style_is_documented, "documented nowhere")
+
+    def drop_sector(tmp):
+        p = os.path.join(tmp, ".github", "ISSUE_TEMPLATE", "share-scenario.yml")
+        with open(p, encoding="utf-8") as fh:
+            text = fh.read()
+        with open(p, "w", encoding="utf-8") as fh:
+            fh.write(text.replace("        - label: Small teams and collectives\n", ""))
+
+    catches_in_repo("a sector option missing from the scenario template",
+                    drop_sector, check_docs.check_scenario_template, "offers 3 options")
+
+    catches_in_repo("the scenario template missing entirely",
+                    lambda tmp: os.remove(os.path.join(tmp, ".github", "ISSUE_TEMPLATE", "share-scenario.yml")),
+                    check_docs.check_scenario_template, "is missing")
 
     print("Stays quiet on correct content")
     clean = run({

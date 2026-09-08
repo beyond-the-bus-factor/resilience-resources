@@ -1,62 +1,128 @@
-name: Share a real-world scenario
-description: Share your experience with a transition, departure, or crisis that others can learn from
+name: Share a scenario
+description: A situation from your own experience that other teams should work through before it happens to them
 title: "[Scenario] "
-labels: ["real-world-experience", "community-contribution"]
+labels: ["scenario", "community-contribution"]
 body:
   - type: markdown
     attributes:
       value: |
-        Your hard-won experience helps others prepare. You can anonymise details if needed.
+        Scenario cards are the workshop exercises in this toolkit. The best ones come from
+        something that really happened.
+
+        The fields below match how a card is built, so a good submission can go straight in.
+        Fill in what you can. Anything you leave out can be worked out in the issue.
+
+        **Anonymise freely.** Change the names, the sector, the numbers. What matters is that
+        the shape is real, not that the details are.
 
   - type: input
     id: title
     attributes:
-      label: Give this scenario a title
-      description: Short, descriptive title for this situation
-      placeholder: "Example: Lead maintainer sudden illness during security crisis"
+      label: Title
+      description: Short, and about the situation rather than the lesson. Sentence case.
+      placeholder: "The sole signatory"
+    validations:
+      required: true
+
+  - type: input
+    id: summary
+    attributes:
+      label: One sentence summary
+      description: This becomes the line under the title on the card. Concrete beats abstract.
+      placeholder: "Payroll runs on Thursday and the only person who can authorise it is in intensive care."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: sectors
+    attributes:
+      label: Which settings does this translate to?
+      description: Tick every one where somebody would recognise this. Most scenarios fit more than one.
+      options:
+        - label: Open source projects
+        - label: Charities and NGOs
+        - label: Companies
+        - label: Small teams and collectives
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Focus
+      options:
+        - "Operational, about keeping the work running"
+        - "Governance, legal and finance"
+        - "People and community"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: How hard is the discussion?
+      description: How hard the conversation tends to be, not how bad the crisis is.
+      options:
+        - "Warm up, a group can get somewhere in ten minutes"
+        - "Standard"
+        - "Hard, expect disagreement or discomfort"
     validations:
       required: true
 
   - type: textarea
     id: situation
     attributes:
-      label: What happened?
-      description: Describe the situation - what was the crisis or transition?
+      label: The situation
+      description: |
+        Second person, present tense, under about 250 words so it fits on a printed card.
+        Plausible beats dramatic. Nobody learns from a disaster they cannot imagine.
       placeholder: |
-        Set the scene. What was the bus factor situation? What triggered the crisis? 
-        You can anonymise projects and people.
+        Your finance officer has been in a road accident. He is alive, in intensive care,
+        and will not be working for months.
+
+        He is the only person set up on the online banking...
     validations:
       required: true
 
   - type: textarea
-    id: response
+    id: questions
     attributes:
-      label: How did you respond?
-      description: What did you actually do? What worked? What didn't?
+      label: Questions to work through
+      description: Around five. Questions the situation itself would ask, not general prompts.
       placeholder: |
-        Walk through the response - first 24 hours, first week, longer term.
-        Be honest about what was messy or difficult.
+        - What do you do in the next twenty four hours to get Thursday's payroll out?
+        - Who has the authority to change the bank mandate, and how long does that take?
+        - How do you approach his family, and what is reasonable to ask of them?
     validations:
       required: true
 
   - type: textarea
-    id: lessons
+    id: think-about
     attributes:
-      label: What did you learn?
-      description: What would you do differently? What advice would you give others?
+      label: Think about
+      description: |
+        Four or five themes for whoever is facilitating. These are held back until a group
+        has had a go, so they name the underlying issue rather than giving the answer.
       placeholder: |
-        The hard-won lessons from this experience.
-    validations:
-      required: true
-
-  - type: dropdown
-    id: use-as-card
-    attributes:
-      label: Should this become a scenario card?
-      description: Would this make a good workshop exercise for others?
-      options:
-        - "Yes - this would make a good workshop scenario"
-        - "No - just sharing for context"
-        - "Not sure"
+        - Bank mandates and authorised signatories as a live risk, not paperwork
+        - The gap between a policy requiring two signatories and the reality
     validations:
       required: false
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What actually happened, if you want to say
+      description: |
+        Not published on the card, and useful context for review. Say if you would rather
+        this stayed in the issue and did not go anywhere else.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: licence
+    attributes:
+      label: Licensing
+      options:
+        - label: I understand this repository is released under CC0, so anything I contribute goes into the public domain and can be used by anyone, commercially, without credit.
+          required: true

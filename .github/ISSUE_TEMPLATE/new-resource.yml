@@ -6,14 +6,18 @@ body:
   - type: markdown
     attributes:
       value: |
-        What's missing from the resilience toolkit? Help us identify gaps.
+        What's missing from the toolkit? Help us find the gaps.
+
+        These resources cover open source projects, charities and NGOs, companies, and
+        small teams. If something is missing for your setting specifically, say which
+        setting, because that is usually the most useful gap to hear about.
 
   - type: input
     id: resource-name
     attributes:
       label: What resource is missing?
       description: Give it a clear, descriptive name
-      placeholder: "Example: Maintainer offboarding checklist"
+      placeholder: "Example: Trustee induction and offboarding checklist"
     validations:
       required: true
 

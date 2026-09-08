@@ -19,6 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 import scenarios  # noqa: E402
+from scenarios import SECTORS, CATEGORIES, DIFFICULTY  # noqa: E402
 
 SKIP_DIRS = {".git", "node_modules", "_site", "__pycache__"}
 
@@ -174,6 +175,62 @@ def check_scenario_links():
                 problem(path, f"link '{label}' names scenario '{m.group(1)}', which does not exist")
 
 
+def check_scenario_template():
+    """The scenario issue template offers one option per value in the taxonomy.
+
+    If a sector is added and the template is not updated, contributors are
+    quietly unable to say their scenario applies to it.
+    """
+    path = os.path.join(ROOT, ".github", "ISSUE_TEMPLATE", "share-scenario.yml")
+    if not os.path.exists(path):
+        PROBLEMS.append(".github/ISSUE_TEMPLATE/share-scenario.yml is missing")
+        return
+    text = read(path)
+    blocks = re.split(r"\n  - type: ", text)
+    counts = {}
+    for block in blocks:
+        m = re.match(r"(checkboxes|dropdown)\n\s+id: (\S+)", block)
+        if not m:
+            continue
+        counts[m.group(2)] = len(re.findall(r"^\s+- (?:label: )?[\"']?\w", block, re.M))
+    expected = {
+        "sectors": (len(SECTORS), "sectors"),
+        "category": (len(CATEGORIES), "categories"),
+        "difficulty": (len(DIFFICULTY), "difficulty levels"),
+    }
+    for field, (want, label) in expected.items():
+        got = counts.get(field)
+        if got is None:
+            problem(path, f"no '{field}' field, so a contributor cannot say which {label} apply")
+        elif got != want:
+            problem(path, f"'{field}' offers {got} options but there are {want} {label}")
+
+
+def check_style_is_documented():
+    """Every rule CI enforces has to be written down where contributors look.
+
+    This check exists because it was not true. CI rejected pull requests for
+    words that CONTRIBUTING.md never mentioned, which is a fast way to lose
+    somebody's first contribution.
+    """
+    path = os.path.join(ROOT, "CONTRIBUTING.md")
+    if not os.path.exists(path):
+        PROBLEMS.append("CONTRIBUTING.md is missing, so the house style is documented nowhere")
+        return
+    # Read raw: the banned words appear there in code spans, which is exactly
+    # how a style guide should name them and how it avoids failing its own rule.
+    text = read(path)
+    for word in BANNED:
+        name = "em dash" if word == "\u2014" else word
+        if word == "\u2014":
+            documented = "em dash" in text.lower()
+        else:
+            documented = f"`{word}`" in text
+        if not documented:
+            problem(path, f"CI rejects '{name}' but CONTRIBUTING.md does not say so. "
+                          f"Document it, or stop enforcing it")
+
+
 def check_house_style():
     for path in markdown_files():
         text = strip_code(read(path))
@@ -211,6 +268,8 @@ CHECKS = [
     ("table rows match their headers", check_tables),
     ("scenario counts in prose are right", check_counts),
     ("house style", check_house_style),
+    ("the enforced style is documented", check_style_is_documented),
+    ("the scenario template matches the taxonomy", check_scenario_template),
 ]
 
 
